@@ -28,3 +28,8 @@ Route::middleware(["auth"])->group(function(){
         return view("home",compact("user"));
     });
 });
+
+
+Route::get('/proveedor2', function () {
+    return view('proveedor2');
+});
