@@ -12,7 +12,7 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        $administrador = Administrador::where("id","=",$id)->first();
+        
     }
 
     /**

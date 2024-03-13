@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
-use App\Models\Administrador;
 use App\Clases\Utilidad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,19 +34,6 @@ class UsuarioController extends Controller
         if($usuario !=null && Hash::check($contrasenia,$usuario->contrasenia))
         {
             Auth::login($usuario);
-            switch($usuario["tipo"])
-            {
-                case "administrador":
-                    $id=$usuario["id"];
-                    $administrador=Administrador::where("id","=",$id)->first();
-                    break;
-                case "proveedor":
-                    # code...
-                    break;
-                default:
-                    # code...
-                    break;
-            }
             $response=redirect("/home");
         }
         else
