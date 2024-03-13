@@ -31,7 +31,7 @@
 
                     <div class="row" style="text-align: end;">
                         <p>
-                            ¿No tienes cuenta? Crea una <a href="{{view("registro")}}">aqui</a>
+                            ¿No tienes cuenta? Crea una <a href="{{url("/registros/index")}}">aqui</a>
                         </p>
                     </div>
 

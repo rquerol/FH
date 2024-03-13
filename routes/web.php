@@ -43,4 +43,12 @@ Route::middleware(["auth"])->group(function(){
     });
 });
 
+Route::get('/registros/index', function () {
+    return view('registros.index');
+});
+
+Route::get('/registros/administrador', function () {
+    return view('registros.administrador');
+});
+
 Route::resource("usuarios",UsuarioController::class);

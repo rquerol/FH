@@ -6,7 +6,7 @@
             <div class="card-body">
                 <p class="h5 font-wight-bold">
                     <strong>
-                        Sign up
+                        Inscribirse
                     </strong>
                 </p>
                 <form action="{{action([App\Http\Controllers\CicloController::class,'store'])}}" class="row" method="POST">  
