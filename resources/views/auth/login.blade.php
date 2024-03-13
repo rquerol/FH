@@ -3,7 +3,7 @@
     @include('partials.mensajes')
     <div class="offset-lg-3 col-lg-6 mt-5">
         <div class="card">
-            <div class="card-header bg-secondary  text-light">Login</div>
+            <div class="card-header bg-secondary  text-light">Iniciar Sesion</div>
             <div class="card-body">
                 <form action="{{action([App\Http\Controllers\UsuarioController::class,'login'])}}" method="POST">
                     @csrf
@@ -22,12 +22,19 @@
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-sm-12 d-flex flex-row-reverse">
                             <a href="{{url('/')}}" class="btn btn-secondary float-right ms-1"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a>
                             <button type="submit" class="btn btn-primary float-right"><i class="fa fa-check" aria-hidden="true"></i>Aceptar</button>
                         </div>
                     </div>
+
+                    <div class="row" style="text-align: end;">
+                        <p>
+                            ¿No tienes cuenta? Crea una <a href="{{view("registro")}}">aqui</a>
+                        </p>
+                    </div>
+
                 </form>
             </div>
         </div>

@@ -42,3 +42,5 @@ Route::middleware(["auth"])->group(function(){
         return $response;
     });
 });
+
+Route::resource("usuarios",UsuarioController::class);
