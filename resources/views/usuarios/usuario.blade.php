@@ -1,5 +1,8 @@
 @extends('layouts.principal')
 @section('contenido')
+    @php
+        $tipo=$GET["tipo"];
+    @endphp
     @include("partials.mensajes")
     <div class="container">
         <div class="card mt-2">
@@ -9,50 +12,76 @@
                         Inscribirse
                     </strong>
                 </p>
-                <form action="{{action([App\Http\Controllers\CicloController::class,'store'])}}" class="row" method="POST">  
+                <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST">  
                     @csrf
-                    <label for="siglas" class="col-sm-2 col-form-label">
-                        Siglas
-                    </label>
-                    <div class="col-sm-10 mb-3">
-                        <input type="text" id="siglas" class="form-control" name="Siglas" autofocus value="{{old('Siglas')}}">
-                    </div>
 
 
                     <label for="nombre" class="col-sm-2 col-form-label">
                         Nombre
                     </label>
                     <div class="col-sm-10 mb-3">
-                        <input type="text" id="nombre" class="form-control" name="Nombre" value="{{old('Nombre')}}">
+                        <input type="text" id="nombre" class="form-control" name="Nombre" autofocus>
                     </div>
 
 
-                    <label for="descripcion" class="col-sm-2 col-form-label">
-                        Descripción
+                    @if ($tipo==="rider")
+                        <label for="apellidos" class="col-sm-2 col-form-label">
+                            Apellidos
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="text" id="apellidos" class="form-control" name="Apellidos">
+                        </div>
+                    @endif
+
+
+                    <label for="contrasenia" class="col-sm-2 col-form-label">
+                        Contraseña
                     </label>
-                    <div class="col-sm-10">
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" id="descripcion" style="height: 100px" name="Descripcion">{{old('Descripcion')}}</textarea>
+                    <div class="col-sm-10 mb-3">
+                        <input type="password" id="contrasenia" class="form-control" name="Contrasenia">
+                    </div>
+
+
+                    <label for="contrasenia" class="col-sm-2 col-form-label">
+                        Confirmar contraseña
+                    </label>
+                    <div class="col-sm-10 mb-3">
+                        <input type="password" id="confirmarContrasenia" class="form-control" name="ConfirmarContrasenia">
+                    </div>
+
+
+                    <label for="email" class="col-sm-2 col-form-label">
+                        Email
+                    </label>
+                    <div class="col-sm-10 mb-3">
+                        <input type="email" id="email" class="form-control" name="Email">
+                    </div>
+
+
+                    <div hidden>
+                        <label for="tipo" class="col-sm-2 col-form-label">
+                            Tipo
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="text" id="tipo" class="form-control" name="Tipo" value="administrador" readonly>
                         </div>
                     </div>
-        
 
-                    <label for="activo" class="col-sm-2">
-                        Activo
+
+                    <label for="telefono" class="col-sm-2 col-form-label">
+                        Telefono
                     </label>
-                    <div class="col-sm-10">
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="activo" name="Activo" value="activo" @if (old("Activo") === "activo") @checked(true) @endif>
-                        </div>
+                    <div class="col-sm-10 mb-3">
+                        <input type="tel" id="telefono" class="form-control" name="Telefono">
                     </div>
-                    
+
 
                     <div class="col-sm-9"></div>
                     <div class="col-sm-3">
                         <button type="submit" class="btn btn-primary">
                             Aceptar
                         </button>
-                        <a href="{{url('ciclos')}}" class="btn btn-secondary">
+                        <a href="{{url('/registros/index')}}" class="btn btn-secondary">
                             Cancelar
                         </a>
                     </div>
