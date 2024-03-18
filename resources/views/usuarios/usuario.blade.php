@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('contenido')
     @php
-        $tipo=$GET["tipo"];
+        $tipo=$_GET["tipo"]
     @endphp
     @include("partials.mensajes")
     <div class="container">
@@ -24,7 +24,7 @@
                     </div>
 
 
-                    @if ($tipo==="rider")
+                    @if ($tipo==="administrador")
                         <label for="apellidos" class="col-sm-2 col-form-label">
                             Apellidos
                         </label>
@@ -42,12 +42,12 @@
                     </div>
 
 
-                    <label for="contrasenia" class="col-sm-2 col-form-label">
+                    {{-- <label for="contrasenia" class="col-sm-2 col-form-label">
                         Confirmar contraseña
                     </label>
                     <div class="col-sm-10 mb-3">
                         <input type="password" id="confirmarContrasenia" class="form-control" name="ConfirmarContrasenia">
-                    </div>
+                    </div> --}}
 
 
                     <label for="email" class="col-sm-2 col-form-label">
@@ -63,7 +63,7 @@
                             Tipo
                         </label>
                         <div class="col-sm-10 mb-3">
-                            <input type="text" id="tipo" class="form-control" name="Tipo" value="administrador" readonly>
+                            <input type="text" id="tipo" class="form-control" name="Tipo" value="{{$tipo}}" readonly>
                         </div>
                     </div>
 
