@@ -39,13 +39,13 @@ class AdministradorController extends Controller
             //Hacer el insert en la tabla
             $administrador->save();
             $request->session()->flash("mensaje","Usuario inscrito correctamente.");
-            $response=redirect("/login");
+            $response=view("auth.login");
         }
         catch(QueryException $ex)
         {
             $mensaje=Utilidad::errorMessage($ex);
             $request->session()->flash("error",$mensaje);
-            $response=redirect()->action([UsuarioController::class,"create"])->withInput();
+            $response=view("auth.login");
         }
         
 

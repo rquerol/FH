@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
-use App\Models\Administrador;
 
 class UsuarioController extends Controller
 {
@@ -101,7 +100,10 @@ class UsuarioController extends Controller
             
             if($tipo==="administrador")
             {
-                $response=redirect()->action([AdministradorController::class,"store"],['apellido'=>$apellidos]);
+                //$response=redirect()->action([AdministradorController::class,"store"],['apellido'=>$apellidos]);
+                //return view("ciclos.index",compact("ciclos"));
+                $request->session()->flash("mensaje","Usuario inscrito correctamente.");
+                $response=redirect("/login");
             }
             /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
             $response=redirect("/login");*/
