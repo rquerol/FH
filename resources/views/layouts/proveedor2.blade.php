@@ -16,33 +16,41 @@
 <body>
     @yield('contenido')
 
-    <div class="contenedor">
+    <div class="contenedor col-lg-12">
 
-        <div class="fila1">
-            <div class="infoProveedor"></div>
-            <div class="estadisticas"></div>
+        <div class="fila1 col-lg-12">
+            <div class="infoProveedor col-lg-7">
+                <h2>Proveedor</h2>
+                <h5>Calle: </h5>
+                <p>C/ Mallorca 283</p>
+                <h5>Ciudad: </h5>
+                <p>Barcelona</p>
+                <h5>CP: </h5>
+                <p>08037</p>
+            </div>
+            <div class="estadisticas col-lg-4">
+                <h2>Estadisticas</h2>
+            </div>
         </div>
 
-        <div class="fila2">
-            <div class="crearMenu"></div>
-            <div class="entregarMenu"></div>
+        <div class="fila2 col-lg-12">
+            <div class="crearMenu col-lg-4">
+                <h2>Crear Menu</h2>
+            </div>
+            <div class="entregarMenu col-lg-7">
+                <h2>Entregar Menu</h2>
+            </div>
         </div>
 
-        <div class="fila3">
-            <div class="stok"></div>
-            <div class="mapa"></div>
+        <div class="fila3 col-lg-12">
+            <div class="stok col-lg-5">
+                <h2>Stok</h2>
+            </div>
+            <div class="mapa col-lg-5">
+                <h2>Mapa</h2>
+            </div>
         </div>
 
-    </div>
-
-    <h1>Pol Garcia</h1>
-    <p>esta es la segunda pagina del proveedor, no la del mapa</p>
-
-
-    <div class="proveedor">
-        <h1>proveedor</h1>
-        <h2>Rebecca</h2>
-        <p></p>
     </div>
 
 </body>
