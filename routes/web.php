@@ -56,3 +56,8 @@ Route::get('/layouts/rider', function () {
 });
 
 Route::resource("usuarios",UsuarioController::class);
+
+
+Route::get('/proveedor2', function () {
+    return view('proveedor2');
+});
