@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use App\Models\Administrador;
 
 class UsuarioController extends Controller
 {
@@ -79,6 +80,11 @@ class UsuarioController extends Controller
         $tipo=$request->input("Tipo");
         $telefono=$request->input("Telefono");
 
+        if($tipo==="administrador")
+        {
+            $apellidos=$request->input("Apellidos");
+        }
+
         //Crear un objeto de la clase que representa una consulta a la tabla
         $usuario=new Usuario();
         //Asignar los valores del formulario a su respectivo campo
@@ -92,12 +98,13 @@ class UsuarioController extends Controller
         {
             //Hacer el insert en la tabla
             $usuario->save();
-            ///////////////////////////////////
-            ///////////////////////////////////
-            ///////////////////////////////////
-            ///////////////////////////////////
-            $request->session()->flash("mensaje","Usuario inscrito correctamente.");
-            $response=redirect("/login");
+            
+            if($tipo==="administrador")
+            {
+                $response=redirect()->action([AdministradorController::class,"store"],['apellido'=>$apellidos]);
+            }
+            /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
+            $response=redirect("/login");*/
         }
         catch(QueryException $ex)
         {
