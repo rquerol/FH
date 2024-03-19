@@ -51,4 +51,8 @@ Route::get('/registros/administrador', function () {
     return view('registros.administrador');
 });
 
+Route::get('/layouts/rider', function () {
+    return view('layouts.rider');
+});
+
 Route::resource("usuarios",UsuarioController::class);
