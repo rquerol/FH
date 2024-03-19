@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('createMarkerButton').addEventListener('click', function () {
-        modoPua = !modoPua; 
-        console.log("Modo pua activado: " + modoPua);
+        modoPua = !modoPua;
         updateButtonStyle();
 
         if (modoPua) {
@@ -50,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateButtonStyle() {
         var button = document.getElementById('createMarkerButton');
         if (modoPua) {
-            button.classList.add('active'); 
+            button.classList.add('active');
         } else {
-            button.classList.remove('active'); 
+            button.classList.remove('active');
         }
     }
 
