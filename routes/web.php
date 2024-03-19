@@ -42,3 +42,8 @@ Route::middleware(["auth"])->group(function(){
         return $response;
     });
 });
+
+
+Route::get('/proveedor2', function () {
+    return view('proveedor2');
+});
