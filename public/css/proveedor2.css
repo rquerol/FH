@@ -1,3 +1,27 @@
-/* body{
-    background-color: red;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor {
+    border: solid 1px black;
+    width: auto;
+    height: auto;
+    margin: 2%;
+}
+
+/* .infoProveedor,.estadisticas,.crearMenu,.entregarMenu,.stok,.mapa{
+    border: solid 1px black;
+    height: 200px;
+    width: 200px;
 } */
+
+.fila1,
+.fila2,
+.fila3 {
+    border: solid 1px black;
+    height: 33%;
+    width: 96%;
+    margin: 2%;
+}
+

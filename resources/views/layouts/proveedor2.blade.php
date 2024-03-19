@@ -10,19 +10,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="{{ asset('css/proveedor2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/proveedor2.css') }}" />
 </head>
 
 <body>
     @yield('contenido')
 
     <div class="contenedor">
-        <div class="infoProveedor"></div>
-        <div class="estadisticas"></div>
-        <div class="crearMenu"></div>
-        <div class="entregarMenu"></div>
-        <div class="stok"></div>
-        <div class="mapa"></div>
+
+        <div class="fila1">
+            <div class="infoProveedor"></div>
+            <div class="estadisticas"></div>
+        </div>
+
+        <div class="fila2">
+            <div class="crearMenu"></div>
+            <div class="entregarMenu"></div>
+        </div>
+
+        <div class="fila3">
+            <div class="stok"></div>
+            <div class="mapa"></div>
+        </div>
+
     </div>
 
     <h1>Pol Garcia</h1>
