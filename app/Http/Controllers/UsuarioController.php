@@ -56,7 +56,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -72,7 +72,61 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Recuperar los datos del formulario
+        $nombre=$request->input("Nombre");
+        $contrasenia=$request->input("Contrasenia");
+        $email=$request->input("Email");
+        $tipo=$request->input("Tipo");
+        $telefono=$request->input("Telefono");
+
+        if($tipo==="administrador")
+        {
+            $apellidos=$request->input("Apellidos");
+        }
+
+        //Crear un objeto de la clase que representa una consulta a la tabla
+        $usuario=new Usuario();
+        //Asignar los valores del formulario a su respectivo campo
+        $usuario->nombre=$nombre;
+        $usuario->contrasenia=\bcrypt($contrasenia);
+        $usuario->email=$email;
+        $usuario->tipo=$tipo;
+        $usuario->telefono=$telefono;
+
+        try
+        {
+            //Hacer el insert en la tabla
+            $usuario->save();
+            
+            if($tipo==="administrador")
+            {
+                //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
+                //return view("ciclos.index",compact("ciclos"));
+                //$response=route('administradores.store', ['apellido' =>$apellidos]);
+                //$response=redirect("administradores/store", ['apellido' =>$apellidos]);
+                //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
+                //$response=redirect([App\Http\Controllers\AdministradorController::class,'store'],['apellido' =>$apellidos]);
+                $id=$usuario["id"];
+                $response=view("registros.administrador",compact("apellidos","id"));
+                //$response=redirect()->action([UsuarioController::class,"index"],["apellidos"=>$apellidos,"email"=>$email]);
+                
+
+                /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
+                $response=redirect("/login");*/
+                
+            }
+            /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
+            $response=redirect("/login");*/
+        }
+        catch(QueryException $ex)
+        {
+            $mensaje=Utilidad::errorMessage($ex);
+            $request->session()->flash("error",$mensaje);
+            $response=redirect()->action([UsuarioController::class,"create"],['tipo' =>$tipo])->withInput();
+        }
+        
+
+        return $response;
     }
 
     /**
