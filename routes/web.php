@@ -31,5 +31,5 @@ Route::middleware(["auth"])->group(function(){
 
 
 Route::get('/proveedor2', function () {
-    return view('proveedor2');
+    return view('proveedor/proveedor2');
 });

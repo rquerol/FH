@@ -14,8 +14,6 @@
 </head>
 
 <body>
-    @yield('contenido')
-
     <div class="contenedor col-lg-12">
 
         <div class="fila1 col-lg-12">
@@ -50,9 +48,15 @@
                 <h2>Mapa</h2>
             </div>
         </div>
-
     </div>
 
+    <div class="container-fluid">
+        @yield('contenido')
+    </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
 
 </html>
