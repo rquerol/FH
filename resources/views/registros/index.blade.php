@@ -13,14 +13,14 @@
                 </div>
 
                 <div class="row mb-3">
-                    <a href="" class="btn btn-primary">
-                        Raider
+                    <a href="{{route('usuarios.create', ['tipo' =>'proveedor'])}}" class="btn btn-primary">
+                        Proveedor
                     </a>
                 </div>
 
                 <div class="row mb-3">
-                    <a href="" class="btn btn-primary">
-                        Proveedor
+                    <a href="{{route('usuarios.create', ['tipo' =>'rider'])}}" class="btn btn-primary">
+                        Raider
                     </a>
                 </div>
 

@@ -16,11 +16,11 @@
                     @csrf
 
 
-                    <label for="nombre" class="col-sm-2 col-form-label">
-                        Nombre
+                    <label @if($tipo==="proveedor") for="nombreEmpresa" @else for="nombre" @endif class="col-sm-2 col-form-label">
+                        Nombre @if($tipo==="proveedor") {{"empresa"}} @endif
                     </label>
                     <div class="col-sm-10 mb-3">
-                        <input type="text" id="nombre" class="form-control" name="Nombre" autofocus>
+                        <input type="text" @if($tipo==="proveedor") id="nombreEmpresa" @else id="nombre" @endif class="form-control" @if($tipo==="proveedor") name="NombreEmpresa" @else name="Nombre" @endif autofocus>
                     </div>
 
 
@@ -75,9 +75,47 @@
                         <input type="tel" id="telefono" class="form-control" name="Telefono">
                     </div>
 
+                    @if ($tipo==="proveedor")
 
-                    <div class="col-sm-9"></div>
-                    <div class="col-sm-3">
+                        <label for="calle" class="col-sm-2 col-form-label">
+                            Calle
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="text" id="calle" class="form-control" name="Calle">
+                        </div>
+
+                        <label for="numero" class="col-sm-2 col-form-label">
+                            Numero
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="number" id="numero" class="form-control" name="Numero">
+                        </div>
+
+                        <label for="cp" class="col-sm-2 col-form-label">
+                            Cp
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="number" id="cp" class="form-control" name="Cp">
+                        </div>
+
+                        <label for="ciudad" class="col-sm-2 col-form-label">
+                            Ciudad
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="text" id="ciudad" class="form-control" name="Ciudad">
+                        </div>
+
+                        <label for="cp" class="col-sm-2 col-form-label">
+                            Cp
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="number" id="cp" class="form-control" name="Cp">
+                        </div>
+
+                    @endif
+
+                    
+                    <div class="text-end">
                         <button type="submit" class="btn btn-primary">
                             Aceptar
                         </button>
