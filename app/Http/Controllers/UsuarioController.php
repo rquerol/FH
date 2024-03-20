@@ -56,7 +56,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -100,10 +100,20 @@ class UsuarioController extends Controller
             
             if($tipo==="administrador")
             {
-                //$response=redirect()->action([AdministradorController::class,"store"],['apellido'=>$apellidos]);
+                //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
                 //return view("ciclos.index",compact("ciclos"));
-                $request->session()->flash("mensaje","Usuario inscrito correctamente.");
-                $response=redirect("/login");
+                //$response=route('administradores.store', ['apellido' =>$apellidos]);
+                //$response=redirect("administradores/store", ['apellido' =>$apellidos]);
+                //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
+                //$response=redirect([App\Http\Controllers\AdministradorController::class,'store'],['apellido' =>$apellidos]);
+                $id=$usuario["id"];
+                $response=view("registros.administrador",compact("apellidos","id"));
+                //$response=redirect()->action([UsuarioController::class,"index"],["apellidos"=>$apellidos,"email"=>$email]);
+                
+
+                /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
+                $response=redirect("/login");*/
+                
             }
             /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
             $response=redirect("/login");*/
@@ -112,7 +122,7 @@ class UsuarioController extends Controller
         {
             $mensaje=Utilidad::errorMessage($ex);
             $request->session()->flash("error",$mensaje);
-            $response=redirect()->action([UsuarioController::class,"create"])->withInput();
+            $response=redirect()->action([UsuarioController::class,"create"],['tipo' =>$tipo])->withInput();
         }
         
 

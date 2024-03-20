@@ -21,17 +21,22 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-        //
+        return view("usuarios.administrador");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store($apellidos)
+    public function store(Request $request)
     {
+        //Recuperar los datos del formulario
+        $apellidos=$request->input("Apellidos");
+        $id=$request->input("Id");
+
         //Crear un objeto de la clase que representa una consulta a la tabla
         $administrador=new Administrador();
         //Asignar los valores del formulario a su respectivo campo
+        $administrador->id=$id;
         $administrador->apellidos=$apellidos;
 
         try
@@ -39,16 +44,15 @@ class AdministradorController extends Controller
             //Hacer el insert en la tabla
             $administrador->save();
             $request->session()->flash("mensaje","Usuario inscrito correctamente.");
-            $response=view("auth.login");
+            $response=redirect("/login");
         }
         catch(QueryException $ex)
         {
             $mensaje=Utilidad::errorMessage($ex);
             $request->session()->flash("error",$mensaje);
-            $response=view("auth.login");
+            $response=redirect("/login");
         }
         
-
         return $response;
     }
 
