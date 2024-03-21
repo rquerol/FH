@@ -73,21 +73,40 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //Recuperar los datos del formulario
-        $nombre=$request->input("Nombre");
+        $tipo=$request->input("Tipo");
+
+        if($tipo==="proveedor")
+        {
+            $nombreEmpresa=$request->input("NombreEmpresa");
+        }
+        else
+        {
+            $nombre=$request->input("Nombre");
+        }
         $contrasenia=$request->input("Contrasenia");
         $email=$request->input("Email");
-        $tipo=$request->input("Tipo");
         $telefono=$request->input("Telefono");
 
         if($tipo==="administrador")
         {
             $apellidos=$request->input("Apellidos");
         }
+        else if($tipo==="proveedor")
+        {
+            $
+        }
 
         //Crear un objeto de la clase que representa una consulta a la tabla
         $usuario=new Usuario();
         //Asignar los valores del formulario a su respectivo campo
-        $usuario->nombre=$nombre;
+        if($tipo==="proveedor")
+        {
+            $usuario->nombre=$nombreEmpresa;
+        }
+        else
+        {
+            $usuario->nombre=$nombre;
+        }
         $usuario->contrasenia=\bcrypt($contrasenia);
         $usuario->email=$email;
         $usuario->tipo=$tipo;
@@ -115,6 +134,11 @@ class UsuarioController extends Controller
                 $response=redirect("/login");*/
                 
             }
+            else if($tipo==="proveedor")
+            {
+                
+            }
+            
             /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
             $response=redirect("/login");*/
         }

@@ -6,13 +6,15 @@
     @include("partials.mensajes")
     <div class="container">
         <div class="card mt-2">
-            <div class="card-body">
-                <p class="h5 font-wight-bold">
+            <div class="card-header">
+                <p class="h5 font-wight-bold text-center">
                     <strong>
-                        Inscribirse
+                        @if($tipo==="administrador") {{"Inscribir administrador"}} @elseif ($tipo==="proveedor") {{"Inscribir proveedor"}} @else {{"Inscribir rider"}} @endif
                     </strong>
                 </p>
-                <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST">  
+            </div>
+            <div class="card-body" @if($tipo==="proveedor") style="height: 425px; overflow-y: auto;" @endif>
+                <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST" id="formularioinscripcion">  
                     @csrf
 
 
@@ -84,12 +86,14 @@
                             <input type="text" id="calle" class="form-control" name="Calle">
                         </div>
 
+
                         <label for="numero" class="col-sm-2 col-form-label">
-                            Numero
+                            Edificio (Numero)
                         </label>
                         <div class="col-sm-10 mb-3">
                             <input type="number" id="numero" class="form-control" name="Numero">
                         </div>
+
 
                         <label for="cp" class="col-sm-2 col-form-label">
                             Cp
@@ -97,6 +101,7 @@
                         <div class="col-sm-10 mb-3">
                             <input type="number" id="cp" class="form-control" name="Cp">
                         </div>
+
 
                         <label for="ciudad" class="col-sm-2 col-form-label">
                             Ciudad
@@ -105,27 +110,27 @@
                             <input type="text" id="ciudad" class="form-control" name="Ciudad">
                         </div>
 
-                        <label for="cp" class="col-sm-2 col-form-label">
-                            Cp
+
+                        <label for="logo" class="col-sm-2 col-form-label">
+                            Logo
                         </label>
                         <div class="col-sm-10 mb-3">
-                            <input type="number" id="cp" class="form-control" name="Cp">
+                            <input type="file" id="logo" class="form-control" name="Logo" required>
                         </div>
+
 
                     @endif
 
-                    
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-primary">
-                            Aceptar
-                        </button>
-                        <a href="{{url('/registros/index')}}" class="btn btn-secondary">
-                            Cancelar
-                        </a>
-                    </div>
-                    
-                    
+
                 </form>
+            </div>
+            <div class="card-footer text-end">
+                <button type="submit" class="btn btn-primary" form="formularioinscripcion">
+                    Aceptar
+                </button>
+                <a href="{{url('/registros/index')}}" class="btn btn-secondary">
+                    Cancelar
+                </a>
             </div>
         </div>
     </div>
