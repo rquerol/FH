@@ -93,7 +93,27 @@ class UsuarioController extends Controller
         }
         else if($tipo==="proveedor")
         {
-            $
+            $calle=$request->input("Calle");
+            $numero=$request->input("Numero");
+            $cp=$request->input("Cp");
+            $ciudad=$request->input("Ciudad");
+            $logo=$request->file("Logo");
+            $logo->store(asset('img/logos/'));
+
+            // $file = $request->file('nombre_campo');
+
+            // // Acceder a información del archivo
+            // $nombre = $file->getClientOriginalName();
+            // $extension = $file->getClientOriginalExtension();
+            // $tipo = $file->getClientMimeType();
+            // $tamanio = $file->getSize();
+
+            // //modificar la informacion del archivo
+            // $name = $file->hashName(); // Generate a unique, random name...
+            // $extension = $file->extension(); // Determine the file's extension based on the file's MIME type...
+
+            // // Almacenar el archivo
+            // $file->store('carpeta_destino');
         }
 
         //Crear un objeto de la clase que representa una consulta a la tabla
