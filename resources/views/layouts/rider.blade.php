@@ -18,5 +18,4 @@
     </div> 
     <script src="{{ asset('js/rider.js') }}"></script>
 </body>
-
 </html>

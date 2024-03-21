@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     map.on('load', function () {
         removeAttributionControl();
+        // Agregar popups a cada marca
+        markers.forEach(function(marker) {
+            var coordinates = marker.getLngLat().toArray();
+            var description = "<h3>Información personalizada</h3>"; // Aquí puedes agregar información específica para cada marca
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(marker);
+        });
     });
 
     document.getElementById('createMarkerButton').addEventListener('click', function () {
@@ -54,17 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
             button.classList.remove('active');
         }
     }
-
-    // Agregar popups a cada marca
-    markers.forEach(function(marker) {
-        var coordinates = marker.getLngLat().toArray();
-        var description = "<h3>Información personalizada</h3>"; // Aquí puedes agregar información específica para cada marca
-
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(marker);
-    });
 
     // Agregar popups cuando se hace clic en marcas existentes
     map.on('click', 'markers', function (e) {
