@@ -6,7 +6,8 @@
             <div class="card-body">
             
                 <div class="row mb-3">
-                    <a href="{{url("registros/administrador")}}" class="btn btn-primary">
+                    {{-- <a href="{{url("usuarios/create")}}" class="btn btn-primary"> --}}
+                    <a href="{{route('usuarios.create', ['tipo' =>'administrador'])}}" class="btn btn-primary">
                         Administrador
                     </a>
                 </div>

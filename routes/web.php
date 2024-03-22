@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AdministradorController;
 use App\Models\Administrador;
 
 /*
@@ -57,7 +58,9 @@ Route::get('/rider', function () {
 
 Route::resource("usuarios",UsuarioController::class);
 
+Route::resource("administradores",AdministradorController::class);
+
 
 Route::get('/proveedor2', function () {
-    return view('proveedor2');
+    return view('proveedor/proveedor2');
 });
