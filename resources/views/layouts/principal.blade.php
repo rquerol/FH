@@ -31,15 +31,15 @@
                             @if (Auth::check())
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{Auth::user()["nombre"]}} {{Auth::user()["apellidos"]}}
+                                        {{Auth::user()["nombre"]}} {{$administrador["apellidos"]}}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{url('/logout')}}">Logout</a>
+                                        <a class="dropdown-item" href="{{url('/logout')}}">Cerrar sesion</a>
                                     </div>
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{url('/login')}}">Login</a>
+                                    <a class="nav-link text-light" href="{{url('/login')}}">Iniciar Sesion</a>
                                 </li>
                             @endif
                         </ul>

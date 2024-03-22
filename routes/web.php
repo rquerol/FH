@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AdministradorController;
+use App\Models\Administrador;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +27,38 @@ Route::get("/logout",[UsuarioController::class,"logout"]);
 Route::middleware(["auth"])->group(function(){
     Route::get("/home",function(){
         $user=Auth::user();
-        return view("home",compact("user"));
+        $id=$user["id"];
+        switch($user["tipo"])
+        {
+            case "administrador":
+                $administrador=Administrador::where("id","=",$id)->first();
+                $response=view("home",compact("user","administrador"));
+                break;
+            case "proveedor":
+                break;
+            default:
+                # code...
+                break;
+        }
+        return $response;
     });
 });
+
+Route::get('/registros/index', function () {
+    return view('registros.index');
+});
+
+Route::get('/registros/administrador', function () {
+    return view('registros.administrador');
+});
+
+Route::get('/rider', function () {
+    return view('rider');
+});
+
+Route::resource("usuarios",UsuarioController::class);
+
+Route::resource("administradores",AdministradorController::class);
 
 
 Route::get('/proveedor2', function () {

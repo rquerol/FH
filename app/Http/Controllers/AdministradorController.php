@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrador;
+use App\Clases\Utilidad;
 use Illuminate\Http\Request;
 
 class AdministradorController extends Controller
@@ -12,7 +13,7 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -20,7 +21,7 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-        //
+        return view("usuarios.administrador");
     }
 
     /**
@@ -28,7 +29,31 @@ class AdministradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Recuperar los datos del formulario
+        $apellidos=$request->input("Apellidos");
+        $id=$request->input("Id");
+
+        //Crear un objeto de la clase que representa una consulta a la tabla
+        $administrador=new Administrador();
+        //Asignar los valores del formulario a su respectivo campo
+        $administrador->id=$id;
+        $administrador->apellidos=$apellidos;
+
+        try
+        {
+            //Hacer el insert en la tabla
+            $administrador->save();
+            $request->session()->flash("mensaje","Usuario inscrito correctamente.");
+            $response=redirect("/login");
+        }
+        catch(QueryException $ex)
+        {
+            $mensaje=Utilidad::errorMessage($ex);
+            $request->session()->flash("error",$mensaje);
+            $response=redirect("/login");
+        }
+        
+        return $response;
     }
 
     /**
