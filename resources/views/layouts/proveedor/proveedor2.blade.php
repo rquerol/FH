@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ asset('css/proveedor2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/proveedor2.css') }}">
 </head>
 
 <body>
@@ -46,6 +46,9 @@
             </div>
             <div class="mapa col-lg-5">
                 <h2>Mapa</h2>
+                <a href="{{ route('proveedor1') }}">
+                    <button class="volverMapa">volver mapa</button>
+                </a>
             </div>
         </div>
     </div>

@@ -60,7 +60,10 @@ Route::resource("usuarios",UsuarioController::class);
 
 Route::resource("administradores",AdministradorController::class);
 
+Route::get('/proveedor1', function () {
+    return view('proveedor/proveedor1');
+})->name('proveedor1');
 
 Route::get('/proveedor2', function () {
     return view('proveedor/proveedor2');
-});
+})->name('proveedor2');

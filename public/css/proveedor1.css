@@ -14,15 +14,6 @@ html {
     position: relative;
 }
 
-#super {
-    width: 80px;
-    height: 120px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 100;
-}
-
 .popup-buttons {
     text-align: center;
 }
@@ -87,4 +78,21 @@ html {
 #createMarkerButton.active {
     transition: 0.2s;
     background-color: #008cba;
+}
+
+.mover {
+    border: 1px solid black;
+    border-radius: 15px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }
