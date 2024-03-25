@@ -1,8 +1,8 @@
 @extends('layouts.principal')
 @section('contenido')
-    @php
+    {{--@php
         $tipo=$_GET["tipo"]
-    @endphp
+    @endphp--}}
     @include("partials.mensajes")
     <div class="container">
         <div class="card mt-2">
@@ -14,7 +14,7 @@
                 </p>
             </div>
             <div class="card-body" @if($tipo==="proveedor") style="height: 425px; overflow-y: auto;" @endif>
-                <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST" id="formularioinscripcion">  
+                <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST" id="formularioinscripcion" enctype="multipart/form-data">  
                     @csrf
 
 

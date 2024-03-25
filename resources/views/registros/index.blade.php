@@ -20,7 +20,7 @@
 
                 <div class="row mb-3">
                     <a href="{{route('usuarios.create', ['tipo' =>'rider'])}}" class="btn btn-primary">
-                        Raider
+                        Rider
                     </a>
                 </div>
 

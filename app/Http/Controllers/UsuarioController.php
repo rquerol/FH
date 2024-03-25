@@ -62,9 +62,10 @@ class UsuarioController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view("usuarios.usuario");
+        $tipo=$request["tipo"];
+        return view("usuarios.usuario",compact("tipo"));
     }
 
     /**
@@ -98,8 +99,11 @@ class UsuarioController extends Controller
             $cp=$request->input("Cp");
             $ciudad=$request->input("Ciudad");
             $logo=$request->file("Logo");
-            $nombreDelArchivoDelLogo=$logo->getClientOriginalName();
-            $logo->store(asset('img/logos/'));
+            $nombreDelArchivoDelLogo=$nombreEmpresa.".".$logo->getClientOriginalExtension();
+            //$logo-storeAs("public/logos",$nombreDelArchivoDelLogo);
+            //$logo->store(asset('public/imagenes/'),$nombreDelArchivoDelLogo);
+            //$logo->store(asset());
+            $logo->storeAs('storage/logos',$nombreDelArchivoDelLogo);
 
             // $file = $request->file('nombre_campo');
 
@@ -150,9 +154,11 @@ class UsuarioController extends Controller
                 //$response=view("registros.administrador",compact("apellidos","id")); Forma incorrecta
                 
                 //$response=redirect()->action([UsuarioController::class,"index"],["apellidos"=>$apellidos,"email"=>$email]);
-                //$response=redirect()->route('administradores.create',compact('apellidos', 'id')); Forma correcta
-                $response=redirect()->action([AdministradorController::class,'store'],['apellidos' =>$apellidos,'id'=>$id]);
-                $response=redirect()->route('administradores.store',compact('apellidos', 'id'));---->probar
+                
+                $response=redirect()->route('administradores.create',compact('apellidos', 'id'));
+
+                //$response=redirect()->action([AdministradorController::class,'store'],['apellidos' =>$apellidos,'id'=>$id]);
+                //$response=redirect()->route('administradores.store',compact('apellidos', 'id'));
                 
 
                 /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
@@ -161,7 +167,7 @@ class UsuarioController extends Controller
             }
             else if($tipo==="proveedor")
             {
-                $response=view("registros.administrador",compact("apellidos","id"));
+                $response=redirect()->route('proveedores.create',compact("id",'calle',"numero","cp","ciudad",'nombreDelArchivoDelLogo'));
             }
             
             /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");

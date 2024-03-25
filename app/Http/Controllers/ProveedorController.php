@@ -18,9 +18,15 @@ class ProveedorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $id=$request["id"];
+        $calle=$request["calle"];
+        $numero=$request["numero"];
+        $cp=$request["cp"];
+        $ciudad=$request["ciudad"];
+        $logo=$request["nombreDelArchivoDelLogo"];
+        return view("usuarios.proveedor",compact("id","calle","numero","cp","ciudad","logo"));
     }
 
     /**
@@ -28,7 +34,39 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Recuperar los datos del formulario
+        $id=$request->input("Id");
+        $calle=$request->input("Calle");
+        $numero=$request->input("Numero");
+        $cp=$request->input("Cp");
+        $ciudad=$request->input("Ciudad");
+        $logo=$request->input("Logo");
+
+        //Crear un objeto de la clase que representa una consulta a la tabla
+        $proveedor=new Proveedor();
+        //Asignar los valores del formulario a su respectivo campo
+        $proveedor["id"]=$id;
+        $proveedor["calle"]=$calle;
+        $proveedor["numero"]=$numero;
+        $proveedor["cp"]=$cp;
+        $proveedor["ciudad"]=$ciudad;
+        $proveedor["logo"]=$logo;
+
+        try
+        {
+            //Hacer el insert en la tabla
+            $proveedor->save();
+            $request->session()->flash("mensaje","Usuario inscrito correctamente.");
+            $response=redirect("/login");
+        }
+        catch(QueryException $ex)
+        {
+            $mensaje=Utilidad::errorMessage($ex);
+            $request->session()->flash("error",$mensaje);
+            $response=redirect("/login");
+        }
+        
+        return $response;
     }
 
     /**
