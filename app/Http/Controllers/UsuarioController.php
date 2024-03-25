@@ -98,6 +98,7 @@ class UsuarioController extends Controller
             $cp=$request->input("Cp");
             $ciudad=$request->input("Ciudad");
             $logo=$request->file("Logo");
+            $nombreDelArchivoDelLogo=$logo->getClientOriginalName();
             $logo->store(asset('img/logos/'));
 
             // $file = $request->file('nombre_campo');
@@ -136,7 +137,7 @@ class UsuarioController extends Controller
         {
             //Hacer el insert en la tabla
             $usuario->save();
-            
+            $id=$usuario["id"];
             if($tipo==="administrador")
             {
                 //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
@@ -145,9 +146,13 @@ class UsuarioController extends Controller
                 //$response=redirect("administradores/store", ['apellido' =>$apellidos]);
                 //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
                 //$response=redirect([App\Http\Controllers\AdministradorController::class,'store'],['apellido' =>$apellidos]);
-                $id=$usuario["id"];
-                $response=view("registros.administrador",compact("apellidos","id"));
+                
+                //$response=view("registros.administrador",compact("apellidos","id")); Forma incorrecta
+                
                 //$response=redirect()->action([UsuarioController::class,"index"],["apellidos"=>$apellidos,"email"=>$email]);
+                //$response=redirect()->route('administradores.create',compact('apellidos', 'id')); Forma correcta
+                $response=redirect()->action([AdministradorController::class,'store'],['apellidos' =>$apellidos,'id'=>$id]);
+                $response=redirect()->route('administradores.store',compact('apellidos', 'id'));---->probar
                 
 
                 /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
@@ -156,7 +161,7 @@ class UsuarioController extends Controller
             }
             else if($tipo==="proveedor")
             {
-                
+                $response=view("registros.administrador",compact("apellidos","id"));
             }
             
             /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");

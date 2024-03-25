@@ -1,7 +1,7 @@
-@php
+{{--@php
     $apellidos=$_GET["apellidos"];
     $id=$_GET["id"]
-@endphp
+@endphp--}}
 <form action="{{action([App\Http\Controllers\AdministradorController::class,'store'])}}" class="row" method="POST" hidden>   
     @csrf
 

@@ -19,9 +19,11 @@ class AdministradorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view("usuarios.administrador");
+        $apellidos=$request->input("apellidos");
+        $id=$request->input("id");
+        return view("usuarios.administrador",compact("apellidos","id"));
     }
 
     /**
