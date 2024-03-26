@@ -1,8 +1,5 @@
 @extends('layouts.principal')
 @section('contenido')
-    {{--@php
-        $tipo=$_GET["tipo"]
-    @endphp--}}
     @include("partials.mensajes")
     <div class="container">
         <div class="card mt-2">
@@ -18,6 +15,20 @@
                     @csrf
 
 
+                    @if($tipo==="rider")
+
+                        
+
+                        <label for="nickname" class="col-sm-2 col-form-label">
+                            Nickname
+                        </label>
+                        <div class="col-sm-10 mb-3">
+                            <input type="text" id="nickname" class="form-control" name="Nickname">
+                        </div>
+
+                    @endif
+
+
                     <label @if($tipo==="proveedor") for="nombreEmpresa" @else for="nombre" @endif class="col-sm-2 col-form-label">
                         Nombre @if($tipo==="proveedor") {{"empresa"}} @endif
                     </label>
@@ -26,7 +37,7 @@
                     </div>
 
 
-                    @if ($tipo==="administrador")
+                    @if ($tipo==="administrador"||$tipo==="rider")
                         <label for="apellidos" class="col-sm-2 col-form-label">
                             Apellidos
                         </label>
@@ -78,6 +89,7 @@
                     </div>
 
                     @if ($tipo==="proveedor")
+
 
                         <label for="calle" class="col-sm-2 col-form-label">
                             Calle

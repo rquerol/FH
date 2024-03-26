@@ -13,15 +13,6 @@ class UsuarioController extends Controller
 {
     public function showLogin()
     {
-        //$usuario=new Usuario();
-
-        //$usuario->nombre_de_usuario="oarriaza";
-        //$usuario->contrasenia=\bcrypt("contra1");
-        //$usuario->correo="oarriazag2223@politecnics.barcelona";
-        //$usuario->nombre="Oscar Armando";
-        //$usuario->apellidos="Arriaza Guzmán";
-        //$usuario->roles_id=1;
-        //$usuario->save();
         return view("auth.login");
     }
 
@@ -88,7 +79,7 @@ class UsuarioController extends Controller
         $email=$request->input("Email");
         $telefono=$request->input("Telefono");
 
-        if($tipo==="administrador")
+        if($tipo==="administrador"||$tipo==="rider")
         {
             $apellidos=$request->input("Apellidos");
         }
@@ -100,9 +91,6 @@ class UsuarioController extends Controller
             $ciudad=$request->input("Ciudad");
             $logo=$request->file("Logo");
             $nombreDelArchivoDelLogo=$nombreEmpresa.".".$logo->getClientOriginalExtension();
-            //$logo-storeAs("public/logos",$nombreDelArchivoDelLogo);
-            //$logo->store(asset('public/imagenes/'),$nombreDelArchivoDelLogo);
-            //$logo->store(asset());
             $logo->storeAs('storage/logos',$nombreDelArchivoDelLogo);
 
             // $file = $request->file('nombre_campo');
@@ -119,6 +107,10 @@ class UsuarioController extends Controller
 
             // // Almacenar el archivo
             // $file->store('carpeta_destino');
+        }
+        else if($tipo==="rider")
+        {
+            
         }
 
         //Crear un objeto de la clase que representa una consulta a la tabla
@@ -144,34 +136,16 @@ class UsuarioController extends Controller
             $id=$usuario["id"];
             if($tipo==="administrador")
             {
-                //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
-                //return view("ciclos.index",compact("ciclos"));
-                //$response=route('administradores.store', ['apellido' =>$apellidos]);
-                //$response=redirect("administradores/store", ['apellido' =>$apellidos]);
-                //$response=redirect()->action([AdministradorController::class,"store"],['apellidos'=>$apellidos]);
-                //$response=redirect([App\Http\Controllers\AdministradorController::class,'store'],['apellido' =>$apellidos]);
-                
-                //$response=view("registros.administrador",compact("apellidos","id")); Forma incorrecta
-                
-                //$response=redirect()->action([UsuarioController::class,"index"],["apellidos"=>$apellidos,"email"=>$email]);
-                
                 $response=redirect()->route('administradores.create',compact('apellidos', 'id'));
-
-                //$response=redirect()->action([AdministradorController::class,'store'],['apellidos' =>$apellidos,'id'=>$id]);
-                //$response=redirect()->route('administradores.store',compact('apellidos', 'id'));
-                
-
-                /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
-                $response=redirect("/login");*/
-                
             }
             else if($tipo==="proveedor")
             {
                 $response=redirect()->route('proveedores.create',compact("id",'calle',"numero","cp","ciudad",'nombreDelArchivoDelLogo'));
             }
-            
-            /*$request->session()->flash("mensaje","Usuario inscrito correctamente.");
-            $response=redirect("/login");*/
+            else if($tipo==="rider")
+            {
+                
+            }
         }
         catch(QueryException $ex)
         {
