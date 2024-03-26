@@ -2,13 +2,13 @@
 @section('contenido')
     @switch($user["tipo"])
         @case("administrador")
-            First case...
+            Administrador
             @break  
         @case("proveedor")
-            Second case...
+            Proveedor
             @break
         @case("rider")
-            Third case...
+            Rider
             @break
         @default
     @endswitch
