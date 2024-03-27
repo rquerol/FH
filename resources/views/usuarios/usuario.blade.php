@@ -17,7 +17,14 @@
 
                     @if($tipo==="rider")
 
-                        
+                        <img src="{{asset('media/imagenes/logo.jfif')}}">
+
+                        <div hidden>
+                            <label for="avatar">
+                                Avatar
+                            </label>
+                            <input type="text" id="avatar" name="Avatar" readonly>
+                        </div>
 
                         <label for="nickname" class="col-sm-2 col-form-label">
                             Nickname
@@ -72,11 +79,11 @@
 
 
                     <div hidden>
-                        <label for="tipo" class="col-sm-2 col-form-label">
+                        <label for="tipo">
                             Tipo
                         </label>
                         <div class="col-sm-10 mb-3">
-                            <input type="text" id="tipo" class="form-control" name="Tipo" value="{{$tipo}}" readonly>
+                            <input type="text" id="tipo" name="Tipo" value="{{$tipo}}" readonly>
                         </div>
                     </div>
 
