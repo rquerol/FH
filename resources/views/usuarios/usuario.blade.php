@@ -1,6 +1,27 @@
 @extends('layouts.principal')
 @section('contenido')
     @include("partials.mensajes")
+    <div class="modal fade" tabindex="-1" id="modalCambiarAvatar">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="display:flex; justify-content: center;">
+                    <div class="row" style="text-align: center;">
+                        <h5 class="modal-title" id="tituloModalMostrarFollowing" style="font-weight: bold;">Following</h5>
+                    </div>
+                </div>
+                <div class="modal-body" style="height: 200px; overflow-y: auto;">
+                    <div class="row" id="contenedorFollowing"></div>
+                    <!--<p class="col text-center">Username</p>
+                    <div class="col text-center">
+                        <button class="btn btn-danger btn-sm">Dejar de seguir</button>
+                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="card mt-2">
             <div class="card-header">
@@ -10,14 +31,16 @@
                     </strong>
                 </p>
             </div>
-            <div class="card-body" @if($tipo==="proveedor") style="height: 425px; overflow-y: auto;" @endif>
+            <div class="card-body" @if($tipo==="proveedor"||$tipo==="rider") style="height: 455px; overflow-y: auto;" @endif>
                 <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST" id="formularioinscripcion" enctype="multipart/form-data">  
                     @csrf
 
 
                     @if($tipo==="rider")
 
-                        <img src="{{asset('media/imagenes/logo.jfif')}}">
+                        <div class="col-sm-12 mb-3 text-center">
+                            <img src="{{asset('media/img/avatares/avatar1.png')}}" alt="avatar 1" height="150vh" width="150vw" id="imagenAvatar">
+                        </div>
 
                         <div hidden>
                             <label for="avatar">
@@ -30,7 +53,7 @@
                             Nickname
                         </label>
                         <div class="col-sm-10 mb-3">
-                            <input type="text" id="nickname" class="form-control" name="Nickname">
+                            <input type="text" id="nickname" class="form-control" name="Nickname" autofocus>
                         </div>
 
                     @endif
@@ -40,7 +63,7 @@
                         Nombre @if($tipo==="proveedor") {{"empresa"}} @endif
                     </label>
                     <div class="col-sm-10 mb-3">
-                        <input type="text" @if($tipo==="proveedor") id="nombreEmpresa" @else id="nombre" @endif class="form-control" @if($tipo==="proveedor") name="NombreEmpresa" @else name="Nombre" @endif autofocus>
+                        <input type="text" @if($tipo==="proveedor") id="nombreEmpresa" @else id="nombre" @endif class="form-control" @if($tipo==="proveedor") name="NombreEmpresa" @else name="Nombre" @endif @if($tipo!=="rider") autofocus @endif>
                     </div>
 
 
@@ -91,7 +114,7 @@
                     <label for="telefono" class="col-sm-2 col-form-label">
                         Telefono
                     </label>
-                    <div class="col-sm-10 mb-3">
+                    <div @if($tipo==="rider") class="col-sm-10" @else class="col-sm-10 mb-3" @endif>
                         <input type="tel" id="telefono" class="form-control" name="Telefono">
                     </div>
 
@@ -153,4 +176,5 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('js/usuario.js')}}"></script>
 @endsection
