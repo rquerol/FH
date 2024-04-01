@@ -6,7 +6,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="display:flex; justify-content: center;">
                     <div class="row" style="text-align: center;">
-                        <h5 class="modal-title" id="tituloModalMostrarFollowing" style="font-weight: bold;">Following</h5>
+                        <h5 class="modal-title" id="tituloModalMostrarFollowing" style="font-weight: bold;">Elige un avatar</h5>
                     </div>
                 </div>
                 <div class="modal-body" style="height: 200px; overflow-y: auto;">
@@ -39,7 +39,7 @@
                     @if($tipo==="rider")
 
                         <div class="col-sm-12 mb-3 text-center">
-                            <img src="{{asset('media/img/avatares/avatar1.png')}}" alt="avatar 1" height="150vh" width="150vw" id="imagenAvatar">
+                            <img src="{{asset('media/img/avatares/avatar1.png')}}" alt="avatar 1" height="150vh" width="150vw" id="imagenAvatar" data-bs-toggle="modal" data-bs-target="#modalCambiarAvatar">
                         </div>
 
                         <div hidden>
