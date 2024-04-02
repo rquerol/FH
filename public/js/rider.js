@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZG5lcml6IiwiYSI6ImNsdHJrN3ppZjAxYmsya3BqcWRsYzdkam8ifQ.gjTWrYyirEhh94V_agnuhQ';
     var modoPua = false;
-    var markers = []; // Array para almacenar las marcas creadas
+    var markersData = []; // Array para almacenar datos de las marcas
+    var puaNames = {}; // Objeto para almacenar los nombres de las puas
 
     var removeAttributionControl = function () {
         var attribControl = document.querySelector('.mapboxgl-ctrl-attrib');
@@ -12,29 +13,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11', 
+        style: 'mapbox://styles/mapbox/streets-v11',
         center: [2.1734, 41.3851],
-        zoom: 13 
+        zoom: 13
     });
 
     map.on('load', function () {
         removeAttributionControl();
         // Agregar popups a cada marca
-        markers.forEach(function(marker) {
-            var coordinates = marker.getLngLat().toArray();
-            var description = "<h3>Información personalizada</h3>"; // Aquí puedes agregar información específica para cada marca
+        markersData.forEach(function (markerData) {
+            var coordinates = markerData.coordinates;
+            var nombrePua = puaNames[markerData.id];
+            var description = "<h3>" + nombrePua + "</h3>"; // Obtener el nombre de la pua correspondiente
 
-            new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(marker);
+            new mapboxgl.Marker({
+                color: "#FFFFFF",
+                draggable: false
+            })
+            .setLngLat(coordinates)
+            .setPopup(new mapboxgl.Popup().setHTML(description))
+            .addTo(map);
         });
     });
 
-    document.getElementById('createMarkerButton').addEventListener('click', function () {
+    var createMarkerButton = document.getElementById('createMarkerButton');
+
+    createMarkerButton.addEventListener('click', function () {
+        // Cambiar el estado del modoPua
         modoPua = !modoPua;
+
+        // Actualizar el estilo del botón
         updateButtonStyle();
 
+        // Cambiar el cursor del mapa según el estado de modoPua
         if (modoPua) {
             map.getCanvas().style.cursor = 'pointer';
         } else {
@@ -44,49 +55,87 @@ document.addEventListener('DOMContentLoaded', function () {
 
     map.on('click', function (e) {
         if (modoPua) {
-            const marker = new mapboxgl.Marker({
-                color: "#FFFFFF",
-                draggable: false
-            }).setLngLat(e.lngLat)
-                .addTo(map);
-            
-            markers.push(marker); // Agrega la marca al array de marcas
+            // Obtener el nombre de la pua del usuario
+            var nombrePua = prompt("Por favor, ingrese el nombre de la pua:");
+            if (nombrePua && nombrePua.trim() !== '') {
+                // Crear la pua en el mapa
+                const nuevaPuaId = markersData.length + 1;
 
-            console.log("Marca creada en: " + e.lngLat);
+                // Guardar el nombre de la pua con su ID
+                puaNames[nuevaPuaId] = nombrePua.trim();
+
+                // Guardar los datos de la pua para su uso posterior
+                markersData.push({
+                    id: nuevaPuaId,
+                    coordinates: e.lngLat
+                });
+
+                // Actualizar el mapa con el nuevo popup de la pua
+                var description = "<h3>" + nombrePua + "</h3>"; // Mostrar el nombre de la pua en el popup
+
+                new mapboxgl.Marker({
+                    color: "#FFFFFF",
+                    draggable: false
+                })
+                .setLngLat(e.lngLat)
+                .setPopup(new mapboxgl.Popup().setHTML(description))
+                .addTo(map);
+                
+                // Reiniciar el modoPua
+                modoPua = false;
+                updateButtonStyle();
+                map.getCanvas().style.cursor = '';
+            } else {
+                alert("El nombre de la pua no puede estar vacío.");
+            }
         }
     });
 
     function updateButtonStyle() {
-        var button = document.getElementById('createMarkerButton');
+        // Actualizar el estilo del botón según el estado de modoPua
         if (modoPua) {
-            button.classList.add('active');
+            createMarkerButton.classList.add('active');
         } else {
-            button.classList.remove('active');
+            createMarkerButton.classList.remove('active');
         }
     }
 
-    // Agregar popups cuando se hace clic en marcas existentes
-    map.on('click', 'markers', function (e) {
-        if (!modoPua) {
-            var coordinates = e.features[0].geometry.coordinates.slice();
-            var description = "<h3>Información personalizada</h3>"; // Aquí puedes agregar información específica para cada marca
-
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
-
-            new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map);
-        }
-    });
-
-    map.on('mouseenter', 'markers', function () {
+    // Cambiar el cursor al pasar sobre una pua
+    map.on('mouseenter', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
 
-    map.on('mouseleave', 'markers', function () {
+    map.on('mouseleave', function () {
         map.getCanvas().style.cursor = '';
+    });
+
+    // Función para borrar una pua
+    map.on('click', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
+        if (!features.length) {
+            return;
+        }
+        var puaId = features[0].properties.id;
+        var nombrePua = puaNames[puaId];
+        if (confirm("¿Estás seguro de que quieres borrar la pua '" + nombrePua + "'?")) {
+            markersData = markersData.filter(function (marker) {
+                return marker.id !== puaId;
+            });
+            map.getSource('markers').setData({
+                type: 'FeatureCollection',
+                features: markersData.map(function (marker) {
+                    return {
+                        type: 'Feature',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: marker.coordinates
+                        },
+                        properties: {
+                            id: marker.id
+                        }
+                    };
+                })
+            });
+        }
     });
 });

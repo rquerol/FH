@@ -16,6 +16,7 @@
         <img src="{{ asset('img/superhero.png') }}" alt="" id="super">
         <button id="createMarkerButton">Crear Marca</button>
     </div> 
+    <!-- Enlace al archivo JavaScript -->
     <script src="{{ asset('js/rider.js') }}"></script>
 </body>
 </html>
