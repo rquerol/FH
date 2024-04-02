@@ -2,7 +2,7 @@
 @section('contenido')
     <div class="offset-lg-3 col-lg-6 mt-5">
         <div class="card">
-            <div class="card-header bg-secondary  text-light">Inscribirse</div>
+            <div class="card-header bg-secondary  text-light text-center">Inscribirse</div>
             <div class="card-body">
             
                 <div class="row mb-3">
@@ -13,14 +13,14 @@
                 </div>
 
                 <div class="row mb-3">
-                    <a href="" class="btn btn-primary">
-                        Raider
+                    <a href="{{route('usuarios.create', ['tipo' =>'proveedor'])}}" class="btn btn-primary">
+                        Proveedor
                     </a>
                 </div>
 
                 <div class="row mb-3">
-                    <a href="" class="btn btn-primary">
-                        Proveedor
+                    <a href="{{route('usuarios.create', ['tipo' =>'rider'])}}" class="btn btn-primary">
+                        Rider
                     </a>
                 </div>
 
