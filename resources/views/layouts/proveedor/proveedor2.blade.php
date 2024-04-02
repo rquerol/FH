@@ -42,7 +42,7 @@
 
         <div class="fila3 col-lg-12">
             <div class="stok col-lg-5">
-                <h2>Stok</h2>
+                <h2>Stock</h2>
             </div>
             <div class="mapa col-lg-5">
                 <h2>Mapa</h2>
