@@ -1,6 +1,13 @@
 @extends('layouts.principal')
 @section('contenido')
     @include("partials.mensajes")
+    {{--@if($tipo==="rider")
+        <pre>
+            @php
+                print_r($listaAvatares)
+            @endphp
+        </pre>
+    @endif--}}
     <div class="contenedorPrincipal">
         <div class="modal fade" tabindex="-1" id="modalCambiarAvatar">
             <div class="modal-dialog modal-dialog-centered">
@@ -10,7 +17,7 @@
                             <h5 class="modal-title" id="tituloModalMostrarFollowing" style="font-weight: bold;">Elige un avatar</h5>
                         </div>
                     </div>
-                    <div class="modal-body" style="height: 200px; overflow-y: auto;">
+                    <div class="modal-body" style="height: 350px; overflow-y: auto;">
                         <div class="row" id="contenedorAvatares"></div>
                         <!--<p class="col text-center">Username</p>
                         <div class="col text-center">
@@ -36,11 +43,12 @@
                     <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST" id="formularioinscripcion" enctype="multipart/form-data">  
                         @csrf
 
-
                         @if($tipo==="rider")
-
+                            @php
+                                $listaAvatares=json_encode($listaAvatares);
+                            @endphp
                             <div class="col-sm-12 mb-3 text-center">
-                                <img src="{{asset('media/img/avatares/avatar1.png')}}" alt="avatar 1" height="150vh" width="150vw" id="imagenAvatar" data-bs-toggle="modal" data-bs-target="#modalCambiarAvatar">
+                                <img src="{{asset('media/img/avatares/avatar1.png')}}" alt="imagen avatar" height="150vh" width="150vw" id="imagenAvatar" data-avatares="{{$listaAvatares}}" data-bs-toggle="modal" data-bs-target="#modalCambiarAvatar">
                             </div>
 
                             <div hidden>
@@ -178,5 +186,5 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('js/usuario.js')}}"></script>
+    <script src="{{asset('js/usuarioBladePhp.js')}}"></script>
 @endsection

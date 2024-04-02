@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use App\Models\AvatarRider;
 
 class UsuarioController extends Controller
 {
@@ -56,7 +57,21 @@ class UsuarioController extends Controller
     public function create(Request $request)
     {
         $tipo=$request["tipo"];
-        return view("usuarios.usuario",compact("tipo"));
+        if($tipo==="rider")
+        {
+            $avataresRider=AvatarRider::all();
+            $listaAvatares=[];
+            for ($i=0; $i <count($avataresRider); $i++)
+            {
+                array_push($listaAvatares,$avataresRider[$i]["avatar"]);
+            }
+            $response=view("usuarios.usuario",compact("tipo","listaAvatares"));
+        }
+        else
+        {
+            $response=view("usuarios.usuario",compact("tipo"));
+        }
+        return $response;
     }
 
     /**
