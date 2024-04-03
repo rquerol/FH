@@ -127,3 +127,46 @@ html {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+/* Nav-Bar */
+
+.navbar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px 0;
+    z-index: 100;
+}
+
+.navbar-item {
+    display: inline-block;
+    margin: 0 0px;
+    text-align: center;
+}
+
+.navbar-item a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 3px;
+    background-size: cover;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+/* 
+.navbar-item img{
+    width: 25px;
+} */
+
+.navbar-item img {
+    width: 85px;
+}
+
+.navbar-item a:hover {
+    background-color: #decd62;
+}
+
+
+/* Modal Reserva */
