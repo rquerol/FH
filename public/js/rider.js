@@ -20,20 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     map.on('load', function () {
         removeAttributionControl();
-        // Agregar popups a cada marca
-        markersData.forEach(function (markerData) {
-            var coordinates = markerData.coordinates;
-            var nombrePua = puaNames[markerData.id];
-            var description = "<h3>" + nombrePua + "</h3>"; // Obtener el nombre de la pua correspondiente
-
-            new mapboxgl.Marker({
-                color: "#FFFFFF",
-                draggable: false
-            })
-            .setLngLat(coordinates)
-            .setPopup(new mapboxgl.Popup().setHTML(description))
-            .addTo(map);
-        });
     });
 
     var createMarkerButton = document.getElementById('createMarkerButton');
@@ -55,23 +41,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
     map.on('click', function (e) {
         if (modoPua) {
-            // Obtener el nombre de la pua del usuario
-            var nombrePua = prompt("Por favor, ingrese el nombre de la pua:");
-            if (nombrePua && nombrePua.trim() !== '') {
+            // Mostrar modal para preguntas
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+            document.getElementById("puaForm").reset();
+            var closeButton = document.getElementById("closeButton");
+            
+            closeButton.onclick = function() {
+                modal.style.display = "none";
+            }
+            // Obtener elementos del modal
+            var nombrePuaInput = document.getElementById("nombrePua");
+            var pregunta1Input = document.getElementById("pregunta1");
+            var pregunta2Input = document.getElementById("pregunta2");
+            var submitButton = document.getElementById("submitForm");
+
+            // Definir evento de clic para el botón de envío del formulario
+            submitButton.onclick = function () {
+                var nombrePua = nombrePuaInput.value;
+                var pregunta1 = pregunta1Input.value;
+                var pregunta2 = pregunta2Input.value;
+
+                // Validar que el nombre de la pua no esté vacío
+                if (nombrePua.trim() === '') {
+                    alert("El nombre de la pua no puede estar vacío.");
+                    return;
+                }
+
                 // Crear la pua en el mapa
                 const nuevaPuaId = markersData.length + 1;
-
-                // Guardar el nombre de la pua con su ID
-                puaNames[nuevaPuaId] = nombrePua.trim();
 
                 // Guardar los datos de la pua para su uso posterior
                 markersData.push({
                     id: nuevaPuaId,
-                    coordinates: e.lngLat
+                    coordinates: e.lngLat,
+                    nombre: nombrePua,
+                    pregunta1: pregunta1,
+                    pregunta2: pregunta2
                 });
 
                 // Actualizar el mapa con el nuevo popup de la pua
-                var description = "<h3>" + nombrePua + "</h3>"; // Mostrar el nombre de la pua en el popup
+                var description = "<h3>" + nombrePua + "</h3>" +
+                    "<p>Pregunta 1: " + pregunta1 + "</p>" +
+                    "<p>Pregunta 2: " + pregunta2 + "</p>"; // Mostrar el nombre y las preguntas en el popup
 
                 new mapboxgl.Marker({
                     color: "#FFFFFF",
@@ -80,14 +92,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 .setLngLat(e.lngLat)
                 .setPopup(new mapboxgl.Popup().setHTML(description))
                 .addTo(map);
-                
+
                 // Reiniciar el modoPua
                 modoPua = false;
                 updateButtonStyle();
                 map.getCanvas().style.cursor = '';
-            } else {
-                alert("El nombre de la pua no puede estar vacío.");
-            }
+
+                // Cerrar el modal
+                modal.style.display = "none";
+            };
         }
     });
 
@@ -107,35 +120,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     map.on('mouseleave', function () {
         map.getCanvas().style.cursor = '';
-    });
-
-    // Función para borrar una pua
-    map.on('click', function (e) {
-        var features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
-        if (!features.length) {
-            return;
-        }
-        var puaId = features[0].properties.id;
-        var nombrePua = puaNames[puaId];
-        if (confirm("¿Estás seguro de que quieres borrar la pua '" + nombrePua + "'?")) {
-            markersData = markersData.filter(function (marker) {
-                return marker.id !== puaId;
-            });
-            map.getSource('markers').setData({
-                type: 'FeatureCollection',
-                features: markersData.map(function (marker) {
-                    return {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: marker.coordinates
-                        },
-                        properties: {
-                            id: marker.id
-                        }
-                    };
-                })
-            });
-        }
     });
 });
