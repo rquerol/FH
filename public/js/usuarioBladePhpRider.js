@@ -8,6 +8,8 @@ document.addEventListener
         principal();
         function principal()
         {
+            let inputAvatar=document.getElementById("avatar");
+            inputAvatar.setAttribute("value","avatar1.png");
             generarAvatares();
             contenedorPrincipal.addEventListener
             (
@@ -19,7 +21,6 @@ document.addEventListener
                     if(event.target.className==="imagenAvatarPequenia"&&event.target.id!==nombreDelArchivoDelAvatarSeleccionado)
                     {
                         let imagenSeleccionada=document.getElementById(nombreDelArchivoDelAvatarSeleccionado);
-                        let inputAvatar=document.getElementById("avatar");
                         imagenSeleccionada.removeAttribute("style");
                         event.target.setAttribute("style","border:2px solid blue; box-shadow: 0 0 20px 2px blue;");
                         imagenGrandeAvatar.setAttribute("src","../media/img/avatares/"+event.target.id);
