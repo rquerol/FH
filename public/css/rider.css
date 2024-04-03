@@ -90,6 +90,91 @@ html {
 }
 
 
+/* NAVBAR POSTERIOR */
+
+.navbar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px 0;
+    z-index: 100 !important;
+}
+
+.navbar-item {
+    display: inline-block;
+    margin: 0 0px;
+    text-align: center;
+}
+
+.navbar-item a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 3px;
+    background-size: cover;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-item {
+    width: 110px;
+}
+
+.navbar-item a:hover {
+    background-color: #decd62;
+}
+
+
+
+
+
+/* 
+ nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px 0;
+    z-index: 100 !important;
+}
+
+.navbar-bottom {
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px 0; 
+}
+
+.navbar-item {
+    display: inline-block;
+    margin: 0 0px;
+    text-align: center;
+}
+
+.navbar-item a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 3px;
+    background-size: cover;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-item {
+    width: 85px;
+}
+
+.navbar-item a:hover {
+    background-color: #decd62;
+}
+ 
+ */
+
+
 .modal {
     display: none; /* Ocultar el modal por defecto */
     position: fixed; /* Permite mostrar el modal encima del contenido */
