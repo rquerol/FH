@@ -91,6 +91,7 @@ html {
 
 /* Estilos para el modal */
 .modal-pua {
+    font-size: 20px;
     display: none;
     position: fixed;
     z-index: 1;
@@ -100,11 +101,10 @@ html {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    font-size: 20px;
 }
 
 /* Contenido del modal */
-.modal-pua-content {
+.modal-content-pua {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -133,6 +133,43 @@ html {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Estilos para el botón de envío del formulario */
+#submitForm {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 20px;
+    width: 140px;
+    height: 50px;
+}
+
+#submitForm:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para los campos del formulario */
+input[type="text"] {
+    width: calc(100% - 40px);
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/* Estilos para las etiquetas del formulario */
+label {
+    padding: 12px 0;
+    display: block;
+    text-align: left; /* Alinear texto a la izquierda */
+}
+
 
 /* Nav-Bar */
 
