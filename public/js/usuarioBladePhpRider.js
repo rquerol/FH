@@ -28,10 +28,10 @@ document.addEventListener
                     }
                     if(event.target.id==="aceptar")
                     {
-                        // if(!validaciones())
-                        // {
-                        //     event.preventDefault();
-                        // }
+                        if(!validaciones())
+                        {
+                            event.preventDefault();
+                        }
                     }
                 }
             );
@@ -82,7 +82,7 @@ document.addEventListener
                 let validacionLongitudNickname=false;
                 let campoNicknamePasoTodasLasValidaciones=false;
                 validacionCampoVacioNickname=verificarQueElCampoNoEsteVacio(validacionCampoVacioNickname,nickname);
-                validacionLongitudNickname=verificarLongitud(validacionLongitudNickname,nickname,2,13);
+                validacionLongitudNickname=verificarLongitud(validacionLongitudNickname,nickname,1,13);
 
                 let validacionCampoVacioNombre=false;
                 let validacionCaracteresExtraniosNombre=false;
@@ -98,40 +98,87 @@ document.addEventListener
                 let campoApellidosPasoTodasLasValidaciones=false;
                 validacionCampoVacioApellidos=verificarQueElCampoNoEsteVacio(validacionCampoVacioApellidos,apellidos);
                 validacionCaracteresExtraniosApellidos=verificarQueElCampoNoContengaCaracteresExtranios(validacionCaracteresExtraniosApellidos,apellidos);
-                validacionLongitudApellidos=verificarLongitud(validacionLongitudApellidos,apellidos,);
+                validacionLongitudApellidos=verificarLongitud(validacionLongitudApellidos,apellidos,2,30);
 
+                let validacionCampoVacioContrasenia=false;
+                let validacionLongitudContrasenia=false;
+                let campoContraseniaPasoTodasLasValidaciones=false;
+                validacionCampoVacioContrasenia=verificarQueElCampoNoEsteVacio(validacionCampoVacioContrasenia,contrasenia);
+                validacionLongitudContrasenia=verificarLongitud(validacionLongitudContrasenia,contrasenia,8,16);
 
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+                let validacionCampoConfirmarContrasenia=false;
+                let campoConfirmarContraseniaPasoTodasLasValidaciones=false;
+                validacionCampoConfirmarContrasenia=verificarQueLosCamposCoincidan(validacionCampoConfirmarContrasenia,confirmarContrasenia,contrasenia);
 
+                let validacionCorreoElectronico=false;
+                let campoCorreoElectronicoPasoTodasLasValidaciones=false;
+                validacionCorreoElectronico=verificarSintaxisCorreo(validacionCorreoElectronico,email);
 
+                let validacionSoloNumerosTelefono=false;
+                let validacionLongitudTelefono=false;
+                let campoTelefonoPasoTodasLasValidaciones=false;
+                validacionLongitudTelefono=verificarLongitud(validacionLongitudTelefono,telefono,9,9);
+                validacionSoloNumerosTelefono=verificarQueElCampoSoloContengaNumeros(validacionSoloNumerosTelefono,telefono);
 
+                if(validacionCampoVacioNickname&&validacionLongitudNickname)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionNickname");
+                    mensajeError.textContent = "";
+                    campoNicknamePasoTodasLasValidaciones=true;
+                }
 
-
-
-
-
-                // if()
-                // {
-                //     let mensajeError = document.getElementById("");
-                //     mensajeError.textContent = "";
-                //     =true;
-                // }
+                if(validacionCampoVacioNombre&&validacionCaracteresExtraniosNombre&&validacionLongitudNombre)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionNombre");
+                    mensajeError.textContent = "";
+                    campoNombrePasoTodasLasValidaciones=true;
+                }
+                
+                if(validacionCampoVacioApellidos&&validacionCaracteresExtraniosApellidos&&validacionLongitudApellidos)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionApellidos");
+                    mensajeError.textContent = "";
+                    campoApellidosPasoTodasLasValidaciones=true;
+                }
+                
+                if(validacionCampoVacioContrasenia&&validacionLongitudContrasenia)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionContrasenia");
+                    mensajeError.textContent = "";
+                    campoContraseniaPasoTodasLasValidaciones=true;
+                }
+                
+                if(validacionCampoConfirmarContrasenia)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionConfirmarContrasenia");
+                    mensajeError.textContent = "";
+                    campoConfirmarContraseniaPasoTodasLasValidaciones=true;
+                }
+                
+                if(validacionCorreoElectronico)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionEmail");
+                    mensajeError.textContent = "";
+                    campoCorreoElectronicoPasoTodasLasValidaciones=true;
+                }
+                
+                if(validacionSoloNumerosTelefono&&validacionLongitudTelefono)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionTelefono");
+                    mensajeError.textContent = "";
+                    campoTelefonoPasoTodasLasValidaciones=true;
+                }
 
                 
-                if(campoNombrePasoTodasLasValidaciones&&campoPrimerApellidoPasoTodasLasValidaciones&&campoSegundoApellidoPasoTodasLasValidaciones&&campoCorreoElectronicoPasoTodasLasValidaciones&&campoContraseniaPasoTodasLasValidaciones&&campoConfirmarContraseniaPasoTodasLasValidaciones&&campoTelefonoPasoTodasLasValidaciones&&campoFechaDeNacimientoPasoTodasLasValidaciones)
+                if(campoNicknamePasoTodasLasValidaciones&&campoNombrePasoTodasLasValidaciones&&campoApellidosPasoTodasLasValidaciones&&campoContraseniaPasoTodasLasValidaciones&&campoConfirmarContraseniaPasoTodasLasValidaciones&&campoCorreoElectronicoPasoTodasLasValidaciones&&campoTelefonoPasoTodasLasValidaciones)
                 {
-                    mensajeValidacionFormulario.textContent = "";
+                    mensajeValidacionFormulario.textContent="";
                     laTareaPasoTodasLasValidaciones=true;
                 }
                 else
                 {
-                    mensajeValidacionFormulario.style.color = "red";
-                    mensajeValidacionFormulario.textContent = "Por favor, complete el formulario correctamente.";  
+                    mensajeValidacionFormulario.style.color="red";
+                    mensajeValidacionFormulario.textContent="Por favor, complete el formulario correctamente.";  
                 }
             }
             function verificarQueElCampoNoEsteVacio(validacionCampoVacio,elementoInput)
@@ -224,7 +271,7 @@ document.addEventListener
                 {
                     // El valor del input no coincide con el patrón
                     // Muestra un mensaje de error
-                    const mensajeError = document.getElementById("mensajeValidacionCorreo");
+                    const mensajeError = document.getElementById("mensajeValidacion"+correo.name);
                     mensajeError.style.color = "red";
                     mensajeError.textContent = "El correo electrónico no es válido.";
 
