@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrador;
-use App\Clases\Utilidad;
+use App\Models\Rider;
 use Illuminate\Http\Request;
 
-class AdministradorController extends Controller
+class RiderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -23,7 +22,9 @@ class AdministradorController extends Controller
     {
         $id=$request["id"];
         $apellidos=$request["apellidos"];
-        return view("usuarios.administrador",compact("id","apellidos"));
+        $nickname=$request["nickname"];
+        $avatar=$request["avatar"];
+        return view("usuarios.rider",compact("id","apellidos","nickname","avatar"));
     }
 
     /**
@@ -34,17 +35,21 @@ class AdministradorController extends Controller
         //Recuperar los datos del formulario
         $id=$request->input("Id");
         $apellidos=$request->input("Apellidos");
+        $nickname=$request->input("Nickname");
+        $avatar=$request->input("Avatar");
 
         //Crear un objeto de la clase que representa una consulta a la tabla
-        $administrador=new Administrador();
+        $rider=new Rider();
         //Asignar los valores del formulario a su respectivo campo
-        $administrador->id=$id;
-        $administrador->apellidos=$apellidos;
+        $rider["id"]=$id;
+        $rider["apellidos"]=$apellidos;
+        $rider["nickname"]=$nickname;
+        $rider["avatar"]=$avatar;
 
         try
         {
             //Hacer el insert en la tabla
-            $administrador->save();
+            $rider->save();
             $request->session()->flash("mensaje","Usuario inscrito correctamente.");
             $response=redirect("/login");
         }
@@ -61,7 +66,7 @@ class AdministradorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Administrador $administrador)
+    public function show(Rider $rider)
     {
         //
     }
@@ -69,7 +74,7 @@ class AdministradorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Administrador $administrador)
+    public function edit(Rider $rider)
     {
         //
     }
@@ -77,7 +82,7 @@ class AdministradorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Administrador $administrador)
+    public function update(Request $request, Rider $rider)
     {
         //
     }
@@ -85,7 +90,7 @@ class AdministradorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Administrador $administrador)
+    public function destroy(Rider $rider)
     {
         //
     }

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrador;
-use App\Clases\Utilidad;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
-class AdministradorController extends Controller
+class ProveedorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -22,8 +21,12 @@ class AdministradorController extends Controller
     public function create(Request $request)
     {
         $id=$request["id"];
-        $apellidos=$request["apellidos"];
-        return view("usuarios.administrador",compact("id","apellidos"));
+        $calle=$request["calle"];
+        $numero=$request["numero"];
+        $cp=$request["cp"];
+        $ciudad=$request["ciudad"];
+        $logo=$request["nombreDelArchivoDelLogo"];
+        return view("usuarios.proveedor",compact("id","calle","numero","cp","ciudad","logo"));
     }
 
     /**
@@ -33,18 +36,26 @@ class AdministradorController extends Controller
     {
         //Recuperar los datos del formulario
         $id=$request->input("Id");
-        $apellidos=$request->input("Apellidos");
+        $calle=$request->input("Calle");
+        $numero=$request->input("Numero");
+        $cp=$request->input("Cp");
+        $ciudad=$request->input("Ciudad");
+        $logo=$request->input("Logo");
 
         //Crear un objeto de la clase que representa una consulta a la tabla
-        $administrador=new Administrador();
+        $proveedor=new Proveedor();
         //Asignar los valores del formulario a su respectivo campo
-        $administrador->id=$id;
-        $administrador->apellidos=$apellidos;
+        $proveedor["id"]=$id;
+        $proveedor["calle"]=$calle;
+        $proveedor["numero"]=$numero;
+        $proveedor["cp"]=$cp;
+        $proveedor["ciudad"]=$ciudad;
+        $proveedor["logo"]=$logo;
 
         try
         {
             //Hacer el insert en la tabla
-            $administrador->save();
+            $proveedor->save();
             $request->session()->flash("mensaje","Usuario inscrito correctamente.");
             $response=redirect("/login");
         }
@@ -61,7 +72,7 @@ class AdministradorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Administrador $administrador)
+    public function show(Proveedor $proveedor)
     {
         //
     }
@@ -69,7 +80,7 @@ class AdministradorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Administrador $administrador)
+    public function edit(Proveedor $proveedor)
     {
         //
     }
@@ -77,7 +88,7 @@ class AdministradorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Administrador $administrador)
+    public function update(Request $request, Proveedor $proveedor)
     {
         //
     }
@@ -85,7 +96,7 @@ class AdministradorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Administrador $administrador)
+    public function destroy(Proveedor $proveedor)
     {
         //
     }

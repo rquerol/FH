@@ -1,4 +1,4 @@
-<form action="{{action([App\Http\Controllers\AdministradorController::class,'store'])}}" class="row" method="POST" hidden>   
+<form action="{{action([App\Http\Controllers\RiderController::class,'store'])}}" class="row" method="POST" hidden>   
     @csrf
 
     <label for="id">
@@ -13,6 +13,20 @@
     </label>
     <div>
         <input type="text" id="apellidos" name="Apellidos" value="{{$apellidos}}" readonly>
+    </div>
+
+    <label for="nickname">
+        Nickname
+    </label>
+    <div>
+        <input type="text" id="nickname" name="Nickname" value="{{$nickname}}" readonly>
+    </div>
+
+    <label for="avatar">
+        Avatar
+    </label>
+    <div>
+        <input type="text" id="avatar" name="Avatar" value="{{$avatar}}" readonly>
     </div>
 
     <button type="submit">

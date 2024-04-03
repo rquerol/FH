@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\RiderController;
 use App\Models\Administrador;
+use App\Models\Proveedor;
+use App\Models\Rider;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +39,12 @@ Route::middleware(["auth"])->group(function(){
                 $response=view("home",compact("user","administrador"));
                 break;
             case "proveedor":
+                $proveedor=Proveedor::where("id","=",$id)->first();
+                $response=view("home",compact("user","proveedor"));
                 break;
             default:
-                # code...
+                $rider=Rider::where("id","=",$id)->first();
+                $response=view("home",compact("user","rider"));
                 break;
         }
         return $response;
@@ -59,6 +66,10 @@ Route::get('/rider', function () {
 Route::resource("usuarios",UsuarioController::class);
 
 Route::resource("administradores",AdministradorController::class);
+
+Route::resource("proveedores",ProveedorController::class);
+
+Route::resource("riders",RiderController::class);
 
 Route::get('/proveedor1', function () {
     return view('proveedor/proveedor1');
