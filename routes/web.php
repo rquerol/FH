@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\RiderController;
 use App\Models\Administrador;
 use App\Models\Proveedor;
+use App\Models\Rider;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,8 @@ Route::resource("usuarios",UsuarioController::class);
 Route::resource("administradores",AdministradorController::class);
 
 Route::resource("proveedores",ProveedorController::class);
+
+Route::resource("riders",RiderController::class);
 
 Route::get('/proveedor1', function () {
     return view('proveedor/proveedor1');

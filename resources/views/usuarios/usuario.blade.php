@@ -1,14 +1,7 @@
 @extends('layouts.principal')
 @section('contenido')
     @include("partials.mensajes")
-    {{--@if($tipo==="rider")
-        <pre>
-            @php
-                print_r($listaAvatares)
-            @endphp
-        </pre>
-    @endif--}}
-    <div class="contenedorPrincipal">
+    <div id="contenedorPrincipal">
         <div class="modal fade" tabindex="-1" id="modalCambiarAvatar">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -25,7 +18,7 @@
                         </div>-->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -186,5 +179,7 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('js/usuarioBladePhp.js')}}"></script>
+    @if($tipo==="rider")
+        <script src="{{asset('js/usuarioBladePhpRider.js')}}"></script>
+    @endif
 @endsection

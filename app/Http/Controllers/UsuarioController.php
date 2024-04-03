@@ -98,7 +98,7 @@ class UsuarioController extends Controller
         {
             $apellidos=$request->input("Apellidos");
         }
-        else if($tipo==="proveedor")
+        if($tipo==="proveedor")
         {
             $calle=$request->input("Calle");
             $numero=$request->input("Numero");
@@ -123,9 +123,10 @@ class UsuarioController extends Controller
             // // Almacenar el archivo
             // $file->store('carpeta_destino');
         }
-        else if($tipo==="rider")
+        if($tipo==="rider")
         {
-            
+            $nickname=$request->input("Nickname");
+            $avatar=$request->input("Avatar");
         }
 
         //Crear un objeto de la clase que representa una consulta a la tabla
@@ -159,7 +160,7 @@ class UsuarioController extends Controller
             }
             else if($tipo==="rider")
             {
-                
+                $response=redirect()->route('riders.create',compact("id",'apellidos',"nickname","avatar"));
             }
         }
         catch(QueryException $ex)
