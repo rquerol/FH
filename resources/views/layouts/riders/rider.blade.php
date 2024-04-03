@@ -17,7 +17,7 @@
         <button id="createMarkerButton">Crear Marca</button>
         <!-- The Modal -->
         <div id="myModal" class="modal-pua">
-            <div class="modal-pua-content">
+            <div class="modal-content-pua">
                 <span class="close" id="closeButton">&times;</span>
                 <h2>Crear Pua</h2>
                 <form id="puaForm" action="puas.php" method="post">
