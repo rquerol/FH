@@ -62,34 +62,101 @@ html {
     font-family: "Open Sans", sans-serif;
 }
 
-#createMarkerButton {
-    border: 1px solid black;
-    border-radius: 15px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+/* --------------------------------------------------------------------NAV------------------------------------------------------------------------- */
+
+/* ---------------BOTONES--------------- */
+
+/* PERFIL */
+
+#boton-perfil{
+    background-color: rgba(255, 255, 255, 0);
     z-index: 1;
-    background-color: #4caf50;
     color: white;
-    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
+    border: 0px solid;
+}
+
+#boton-perfil:hover {
+    padding-top: 5px;
+    transition: 0.2s;
+    background-color: #decd62;
+}
+
+/* CREAR PUA */
+
+#createMarkerButton {
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 1;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: 0px solid;
 }
 
 #createMarkerButton:hover {
+    padding-top: 5px;
     transition: 0.2s;
-    background-color: #45a049;
+    background-color: #decd62;
 }
 
 #createMarkerButton.active {
     transition: 0.2s;
+    border-radius: 45px;
     background-color: #008cba;
+    padding-top: 5px;
 }
 
-/* Estilos para el modal */
+/* RESERVAS */
+
+#boton-reservas{
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 1;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: 0px solid;
+}
+
+#boton-reservas:hover {
+    padding-top: 5px;
+    transition: 0.2s;
+    background-color: #decd62;
+}
+
+/* HISTORIAL */
+
+#boton-historial{
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 1;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: 0px solid;
+}
+
+#boton-historial:hover {
+    padding-top: 5px;
+    transition: 0.2s;
+    background-color: #decd62;
+}
+
+/* ---------------MODALES--------------- */
+
+/* PUA */
+
 .modal-pua {
     font-size: 20px;
     display: none;
@@ -103,7 +170,6 @@ html {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Contenido del modal */
 .modal-content-pua {
     background-color: #fefefe;
     margin: auto;
@@ -118,6 +184,69 @@ html {
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* RESERVAS */
+
+.modal-reservas {
+    font-size: 20px;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;    
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenido del modal */
+.modal-content-reservas {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%; /* Ancho del modal */
+    max-width: 400px; /* Ancho máximo */
+    text-align: center; /* Alineación centrada */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* HISTORIAL */
+
+.modal-historial {
+    font-size: 20px;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;    
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenido del modal */
+.modal-content-historial {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%; /* Ancho del modal */
+    max-width: 400px; /* Ancho máximo */
+    text-align: center; /* Alineación centrada */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 /* Botón de cierre del modal */
 .close {
