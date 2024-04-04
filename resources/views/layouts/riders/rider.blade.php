@@ -21,10 +21,8 @@
                 <form id="puaForm" action="puas.php" method="post">
                     <label for="nombrePua">Nombre del Rider:</label><br>
                     <input type="text" id="nombrePua" name="nombrePua"><br><br>
-                    <label for="pregunta1">Pregunta 1:</label><br>
-                    <input type="text" id="pregunta1" name="pregunta1"><br><br>
-                    <label for="pregunta2">Pregunta 2:</label><br>
-                    <input type="text" id="pregunta2" name="pregunta2"><br><br>
+                    <label for="numpersonas">Cuantas personas hay?:</label><br>
+                    <input type="number" id="numpersonas" name="numpersonas"><br><br>
                     <button type="button" id="submitForm">Crear Pua</button>
                 </form>
             </div>
@@ -56,6 +54,50 @@
             </div>
         </nav>
       
+        <div id="modal-perfil" class="modal-perfil">
+            <div class="modal-content-perfil modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">PERFIL</h5>
+                        <span class="close" id="closeButtonPerfil">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>PROVEEDOR</th>
+                                        <th>RESERVAS</th>
+                                        <th>HORARIOS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            
+                                    <tr>
+                                        <td>Pizzeria Rebebba</td>
+                                        <td>4</td>
+                                        <td>18:00 a 22:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BurgerKing</td>
+                                        <td>2</td>
+                                        <td>20:00 a 20:30</td>
+                                    </tr>
+                                    <tr>
+                                        <td>365</td>
+                                        <td>2</td>
+                                        <td>12:00 a 24:00</td>
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div> 
             <!-- Modal Reservas -->
         <div id="modal-reservas" class="modal-reservas">
             <div class="modal-content-reservas modal-lg">
@@ -101,7 +143,6 @@
                 </div>
             </div>
         </div> 
-
         <div class="modal-historial" id="modal-historial">
             <div class="modal-content-historial modal-lg mt-3">
                 <div class="modal-content px-5 pt-3 pb-3">

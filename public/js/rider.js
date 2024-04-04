@@ -53,15 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             // Obtener elementos del modal
             var nombrePuaInput = document.getElementById("nombrePua");
-            var pregunta1Input = document.getElementById("pregunta1");
-            var pregunta2Input = document.getElementById("pregunta2");
+            var numpersonasInput = document.getElementById("numpersonas");
             var submitButton = document.getElementById("submitForm");
 
             // Definir evento de clic para el botón de envío del formulario
             submitButton.onclick = function () {
                 var nombrePua = nombrePuaInput.value;
-                var pregunta1 = pregunta1Input.value;
-                var pregunta2 = pregunta2Input.value;
+                var numpersonas = numpersonasInput.value;
 
                 // Validar que el nombre de la pua no esté vacío
                 if (nombrePua.trim() === '') {
@@ -77,14 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     id: nuevaPuaId,
                     coordinates: e.lngLat,
                     nombre: nombrePua,
-                    pregunta1: pregunta1,
-                    pregunta2: pregunta2
+                    numpersonas: numpersonas,
                 });
 
                 // Actualizar el mapa con el nuevo popup de la pua
                 var description = "<h3>" + nombrePua + "</h3>" +
-                    "<p>Pregunta 1: " + pregunta1 + "</p>" +
-                    "<p>Pregunta 2: " + pregunta2 + "</p>"; // Mostrar el nombre y las preguntas en el popup
+                    "<p>Numero de personas: " + numpersonas + "</p>";
 
                 new mapboxgl.Marker({
                     color: "#fcba03",
@@ -103,6 +99,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 modal.style.display = "none";
             };
         }
+    });
+
+    var modalPerfil = document.getElementById("modal-perfil"); // Agregamos la referencia al modal de reservas
+    var boton_perfil = document.getElementById('boton-perfil');
+
+    boton_perfil.addEventListener('click', function (){
+        modalPerfil.style.display = "block";
+        var closeButtonReservas = document.getElementById('closeButtonPerfil');
+
+        // Agrega un evento de clic al botón de cierre
+        closeButtonPerfil.addEventListener('click', function() {
+            // Oculta el modal de reservas
+            modalPerfil.style.display = "none";
+        });
     });
 
 
