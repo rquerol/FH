@@ -25,12 +25,13 @@
         </div>
         <div class="container">
             <div class="card mt-2">
-                <div class="card-header">
-                    <p class="h5 font-wight-bold text-center">
+                <div class="card-header text-center">
+                    <p class="h5 font-wight-bold">
                         <strong>
                             @if($tipo==="administrador") {{"Inscribir administrador"}} @elseif ($tipo==="proveedor") {{"Inscribir proveedor"}} @else {{"Inscribir rider"}} @endif
                         </strong>
                     </p>
+                    @if($tipo==="administrador") <small id="mensajeValidacionFormularioCrearAdministrador"></small> @elseif($tipo==="proveedor") <small id="mensajeValidacionFormularioCrearProveedor"></small> @else <small id="mensajeValidacionFormularioCrearRider"></small> @endif
                 </div>
                 <div class="card-body" @if($tipo==="proveedor"||$tipo==="rider") style="height: 455px; overflow-y: auto;" @endif>
                     <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST" id="formularioinscripcion" enctype="multipart/form-data">  
@@ -56,6 +57,7 @@
                             </label>
                             <div class="col-sm-10 mb-3">
                                 <input type="text" id="nickname" class="form-control" name="Nickname" autofocus>
+                                <small id="mensajeValidacionNickname"></small>
                             </div>
 
                         @endif
@@ -66,6 +68,7 @@
                         </label>
                         <div class="col-sm-10 mb-3">
                             <input type="text" @if($tipo==="proveedor") id="nombreEmpresa" @else id="nombre" @endif class="form-control" @if($tipo==="proveedor") name="NombreEmpresa" @else name="Nombre" @endif @if($tipo!=="rider") autofocus @endif>
+                            @if($tipo==="proveedor") <small id="mensajeValidacionNombreEmpresa"></small> @else <small id="mensajeValidacionNombre"></small> @endif 
                         </div>
 
 
@@ -75,6 +78,7 @@
                             </label>
                             <div class="col-sm-10 mb-3">
                                 <input type="text" id="apellidos" class="form-control" name="Apellidos">
+                                <small id="mensajeValidacionApellidos"></small>
                             </div>
                         @endif
 
@@ -84,15 +88,17 @@
                         </label>
                         <div class="col-sm-10 mb-3">
                             <input type="password" id="contrasenia" class="form-control" name="Contrasenia">
+                            <small id="mensajeValidacionContrasenia"></small>
                         </div>
 
 
-                        {{-- <label for="contrasenia" class="col-sm-2 col-form-label">
+                        <label for="contrasenia" class="col-sm-2 col-form-label">
                             Confirmar contraseña
                         </label>
                         <div class="col-sm-10 mb-3">
                             <input type="password" id="confirmarContrasenia" class="form-control" name="ConfirmarContrasenia">
-                        </div> --}}
+                            <small id="mensajeValidacionConfirmarContrasenia"></small>
+                        </div>
 
 
                         <label for="email" class="col-sm-2 col-form-label">
@@ -100,6 +106,7 @@
                         </label>
                         <div class="col-sm-10 mb-3">
                             <input type="email" id="email" class="form-control" name="Email">
+                            <small id="mensajeValidacionEmail"></small>
                         </div>
 
 
@@ -118,6 +125,7 @@
                         </label>
                         <div @if($tipo==="rider") class="col-sm-10" @else class="col-sm-10 mb-3" @endif>
                             <input type="tel" id="telefono" class="form-control" name="Telefono">
+                            <small id="mensajeValidacionTelefono"></small>
                         </div>
 
                         @if ($tipo==="proveedor")
@@ -169,7 +177,7 @@
                     </form>
                 </div>
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-primary" form="formularioinscripcion">
+                    <button type="submit" class="btn btn-primary" form="formularioinscripcion" id="aceptar">
                         Aceptar
                     </button>
                     <a href="{{url('/registros/index')}}" class="btn btn-secondary">
