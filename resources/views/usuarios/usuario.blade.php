@@ -189,5 +189,7 @@
     </div>
     @if($tipo==="rider")
         <script src="{{asset('js/usuarioBladePhpRider.js')}}"></script>
+    @elseif($tipo==="proveedor")
+        <script src="{{asset('js/usuarioBladePhpProveedor.js')}}"></script>
     @endif
 @endsection
