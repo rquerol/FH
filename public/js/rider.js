@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+
     map.on('click', function (e) {
         if (modoPua) {
             // Mostrar modal para preguntas
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     "<p>Pregunta 2: " + pregunta2 + "</p>"; // Mostrar el nombre y las preguntas en el popup
 
                 new mapboxgl.Marker({
-                    color: "#FFFFFF",
+                    color: "#fcba03",
                     draggable: false
                 })
                 .setLngLat(e.lngLat)
@@ -102,6 +103,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 modal.style.display = "none";
             };
         }
+    });
+
+
+    var modalReservas = document.getElementById("modal-reservas"); // Agregamos la referencia al modal de reservas
+    var boton_reservas = document.getElementById('boton-reservas');
+
+    boton_reservas.addEventListener('click', function (){
+        modalReservas.style.display = "block";
+        var closeButtonReservas = document.getElementById('closeButtonReservas');
+
+        // Agrega un evento de clic al botón de cierre
+        closeButtonReservas.addEventListener('click', function() {
+            // Oculta el modal de reservas
+            modalReservas.style.display = "none";
+        });
+    });
+    
+    var modalHistorial = document.getElementById("modal-historial"); // Agregamos la referencia al modal de reservas
+    var boton_historial = document.getElementById('boton-historial');
+
+    boton_historial.addEventListener('click', function (){
+        modalHistorial.style.display = "block";
+        var closeButtonHistorial = document.getElementById('closeButtonHistorial');
+
+        // Agrega un evento de clic al botón de cierre
+        closeButtonHistorial.addEventListener('click', function() {
+            // Oculta el modal de reservas
+            modalHistorial.style.display = "none";
+        });
     });
 
     function updateButtonStyle() {
