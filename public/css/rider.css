@@ -155,6 +155,37 @@ html {
 
 /* ---------------MODALES--------------- */
 
+/* PERFIL */
+
+.modal-perfil {
+    font-size: 20px;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;    
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenido del modal */
+.modal-content-perfil {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%; /* Ancho del modal */
+    max-width: 400px; /* Ancho máximo */
+    text-align: center; /* Alineación centrada */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 /* PUA */
 
 .modal-pua {
@@ -283,6 +314,16 @@ html {
 
 /* Estilos para los campos del formulario */
 input[type="text"] {
+    width: calc(100% - 40px);
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+input[type="number"] {
     width: calc(100% - 40px);
     padding: 12px;
     margin: 8px 0;
