@@ -21,7 +21,7 @@ use App\Models\Rider;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('landing');
 });
 
 Route::get("/login",[UsuarioController::class,"showLogin"])->name("login");
