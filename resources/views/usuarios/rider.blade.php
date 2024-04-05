@@ -1,3 +1,6 @@
+<div style="text-align: center;">
+    <img src="{{asset('media/img/iconos/reloj_de_arena.gif')}}" alt="imagen reloj" height="600vh" width="600vw">
+</div>
 <form action="{{action([App\Http\Controllers\RiderController::class,'store'])}}" class="row" method="POST" hidden>   
     @csrf
 
