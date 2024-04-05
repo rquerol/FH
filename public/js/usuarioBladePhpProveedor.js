@@ -24,6 +24,7 @@ document.addEventListener
         }
         function validaciones()
         {
+            let mensajeValidacionFormulario=document.getElementById("mensajeValidacionFormularioCrearProveedor")
             let nombreEmpresa=document.getElementById("nombreEmpresa")
             let contrasenia=document.getElementById("contrasenia");
             let confirmarContrasenia=document.getElementById("confirmarContrasenia");
@@ -38,27 +39,11 @@ document.addEventListener
             principal();
             function principal()
             {
-                let validacionCampoVacioNickname=false;
-                let validacionLongitudNickname=false;
-                let campoNicknamePasoTodasLasValidaciones=false;
-                validacionCampoVacioNickname=verificarQueElCampoNoEsteVacio(validacionCampoVacioNickname,nickname);
-                validacionLongitudNickname=verificarLongitud(validacionLongitudNickname,nickname,1,13);
-
-                let validacionCampoVacioNombre=false;
-                let validacionCaracteresExtraniosNombre=false;
-                let validacionLongitudNombre=false;
-                let campoNombrePasoTodasLasValidaciones=false;
-                validacionCampoVacioNombre=verificarQueElCampoNoEsteVacio(validacionCampoVacioNombre,nombre);
-                validacionCaracteresExtraniosNombre=verificarQueElCampoNoContengaCaracteresExtranios(validacionCaracteresExtraniosNombre,nombre);
-                validacionLongitudNombre=verificarLongitud(validacionLongitudNombre,nombre,2,30);
-
-                let validacionCampoVacioApellidos=false;
-                let validacionCaracteresExtraniosApellidos=false;
-                let validacionLongitudApellidos=false;
-                let campoApellidosPasoTodasLasValidaciones=false;
-                validacionCampoVacioApellidos=verificarQueElCampoNoEsteVacio(validacionCampoVacioApellidos,apellidos);
-                validacionCaracteresExtraniosApellidos=verificarQueElCampoNoContengaCaracteresExtranios(validacionCaracteresExtraniosApellidos,apellidos);
-                validacionLongitudApellidos=verificarLongitud(validacionLongitudApellidos,apellidos,2,30);
+                let validacionCampoVacioNombreEmpresa=false;
+                let validacionLongitudNombreEmpresa=false;
+                let campoNombreEmpresaPasoTodasLasValidaciones=false;
+                validacionCampoVacioNombreEmpresa=verificarQueElCampoNoEsteVacio(validacionCampoVacioNombreEmpresa,nombreEmpresa);
+                validacionLongitudNombreEmpresa=verificarLongitud(validacionLongitudNombreEmpresa,nombreEmpresa,2,30);
 
                 let validacionCampoVacioContrasenia=false;
                 let validacionLongitudContrasenia=false;
@@ -80,48 +65,56 @@ document.addEventListener
                 validacionLongitudTelefono=verificarLongitud(validacionLongitudTelefono,telefono,9,9);
                 validacionSoloNumerosTelefono=verificarQueElCampoSoloContengaNumeros(validacionSoloNumerosTelefono,telefono);
 
-                if(validacionCampoVacioNickname&&validacionLongitudNickname)
+                let validacionCampoVacioCalle=false;
+                let validacionLongitudCalle=false;
+                let campoCallePasoTodasLasValidaciones=false;
+                validacionCampoVacioCalle=verificarQueElCampoNoEsteVacio(validacionCampoVacioCalle,calle);
+                validacionLongitudCalle=verificarLongitud(validacionLongitudCalle,calle,2,30);
+
+                let validacionLongitudNumero=false;
+                let campoNumeroPasoTodasLasValidaciones=false;
+                validacionLongitudNumero=verificarLongitud(validacionLongitudNumero,numero,1,4);
+
+                let validacionLongitudCp=false;
+                let campoCpPasoTodasLasValidaciones=false;
+                validacionLongitudCp=verificarLongitud(validacionLongitudCp,cp,5,5);
+
+                let validacionCampoVacioCiudad=false;
+                let validacionCaracteresExtraniosCiudad=false;
+                let validacionLongitudCiudad=false;
+                let campoCiudadPasoTodasLasValidaciones=false;
+                validacionCampoVacioCiudad=verificarQueElCampoNoEsteVacio(validacionCampoVacioCiudad,ciudad);
+                validacionCaracteresExtraniosCiudad=verificarQueElCampoNoContengaCaracteresExtranios(validacionCaracteresExtraniosCiudad,ciudad);
+                validacionLongitudCiudad=verificarLongitud(validacionLongitudCiudad,ciudad,2,30);
+
+                if(validacionCampoVacioNombreEmpresa&&validacionLongitudNombreEmpresa)
                 {
-                    let mensajeError = document.getElementById("mensajeValidacionNickname");
+                    let mensajeError = document.getElementById("mensajeValidacionNombreEmpresa");
                     mensajeError.textContent = "";
-                    campoNicknamePasoTodasLasValidaciones=true;
+                    campoNombreEmpresaPasoTodasLasValidaciones=true;
                 }
 
-                if(validacionCampoVacioNombre&&validacionCaracteresExtraniosNombre&&validacionLongitudNombre)
-                {
-                    let mensajeError = document.getElementById("mensajeValidacionNombre");
-                    mensajeError.textContent = "";
-                    campoNombrePasoTodasLasValidaciones=true;
-                }
-                
-                if(validacionCampoVacioApellidos&&validacionCaracteresExtraniosApellidos&&validacionLongitudApellidos)
-                {
-                    let mensajeError = document.getElementById("mensajeValidacionApellidos");
-                    mensajeError.textContent = "";
-                    campoApellidosPasoTodasLasValidaciones=true;
-                }
-                
                 if(validacionCampoVacioContrasenia&&validacionLongitudContrasenia)
                 {
                     let mensajeError = document.getElementById("mensajeValidacionContrasenia");
                     mensajeError.textContent = "";
                     campoContraseniaPasoTodasLasValidaciones=true;
                 }
-                
+
                 if(validacionCampoConfirmarContrasenia)
                 {
                     let mensajeError = document.getElementById("mensajeValidacionConfirmarContrasenia");
                     mensajeError.textContent = "";
                     campoConfirmarContraseniaPasoTodasLasValidaciones=true;
                 }
-                
+
                 if(validacionCorreoElectronico)
                 {
                     let mensajeError = document.getElementById("mensajeValidacionEmail");
                     mensajeError.textContent = "";
                     campoCorreoElectronicoPasoTodasLasValidaciones=true;
                 }
-                
+
                 if(validacionSoloNumerosTelefono&&validacionLongitudTelefono)
                 {
                     let mensajeError = document.getElementById("mensajeValidacionTelefono");
@@ -129,8 +122,36 @@ document.addEventListener
                     campoTelefonoPasoTodasLasValidaciones=true;
                 }
 
+                if(validacionCampoVacioCalle&&validacionLongitudCalle)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionCalle");
+                    mensajeError.textContent = "";
+                    campoCallePasoTodasLasValidaciones=true;
+                }
+
+                if(validacionLongitudNumero)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionNumero");
+                    mensajeError.textContent = "";
+                    campoNumeroPasoTodasLasValidaciones=true;
+                }
                 
-                if(campoNicknamePasoTodasLasValidaciones&&campoNombrePasoTodasLasValidaciones&&campoApellidosPasoTodasLasValidaciones&&campoContraseniaPasoTodasLasValidaciones&&campoConfirmarContraseniaPasoTodasLasValidaciones&&campoCorreoElectronicoPasoTodasLasValidaciones&&campoTelefonoPasoTodasLasValidaciones)
+                if(validacionLongitudCp)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionCp");
+                    mensajeError.textContent = "";
+                    campoCpPasoTodasLasValidaciones=true;
+                }
+
+                if(validacionCampoVacioCiudad&&validacionCaracteresExtraniosCiudad&&validacionLongitudCiudad)
+                {
+                    let mensajeError = document.getElementById("mensajeValidacionCiudad");
+                    mensajeError.textContent = "";
+                    campoCiudadPasoTodasLasValidaciones=true;
+                }
+
+
+                if(campoNombreEmpresaPasoTodasLasValidaciones&&campoContraseniaPasoTodasLasValidaciones&&campoConfirmarContraseniaPasoTodasLasValidaciones&&campoCorreoElectronicoPasoTodasLasValidaciones&&campoTelefonoPasoTodasLasValidaciones&&campoCallePasoTodasLasValidaciones&&campoNumeroPasoTodasLasValidaciones&&campoCpPasoTodasLasValidaciones&&campoCiudadPasoTodasLasValidaciones)
                 {
                     mensajeValidacionFormulario.textContent="";
                     laTareaPasoTodasLasValidaciones=true;
@@ -289,4 +310,5 @@ document.addEventListener
             return laTareaPasoTodasLasValidaciones;
         }
     }
+
 );
