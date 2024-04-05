@@ -42,12 +42,15 @@
                 <li class="nav-item mx-4">
                   <a class="nav-link" href="#proveedor">Proveedor</a>
                 </li>
-                <li class="nav-item mx-4">
-                  <a class="nav-link" href="#footer">Unete</a>
-                </li>
-                <li class="nav-item mx-4">
-                  <a class="nav-link" href="">Ir al APP</a>
-                </li>
+                <ul class="navbar-nav">
+                  <li class="nav-item mx-4">
+                      <a class="nav-link" href="#footer">Unete</a>
+                  </li>
+                  
+                  <li class="nav-item mx-4 ms-5">
+                      <a class="nav-link" href="{{ route('login') }}" style="color: black;">Ir al APP</a>
+                  </li>
+              </ul>
               </ul>
             </div>
           </nav>
