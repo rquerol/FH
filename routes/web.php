@@ -21,7 +21,7 @@ use App\Models\Rider;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('landing');
 });
 
 Route::get("/login",[UsuarioController::class,"showLogin"])->name("login");
@@ -40,7 +40,7 @@ Route::middleware(["auth"])->group(function(){
                 break;
             case "proveedor":
                 $proveedor=Proveedor::where("id","=",$id)->first();
-                $response=view("home",compact("user","proveedor"));
+                $response=view("proveedor/proveedor1",compact("user","proveedor"));
                 break;
             default:
                 $rider=Rider::where("id","=",$id)->first();

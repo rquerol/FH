@@ -18,7 +18,7 @@
     @yield('contenido')
     <div id="map">
         <a href="{{ route('proveedor2') }}">
-            <button class="mover" id="mover">Ir pagina 2</button>
+            <button class="mover" id="mover">Gestionar Proveedor</button>
         </a>
     </div>
     <script src="{{ asset('js/rider.js') }}"></script>

@@ -136,6 +136,7 @@
                             </label>
                             <div class="col-sm-10 mb-3">
                                 <input type="text" id="calle" class="form-control" name="Calle">
+                                <small id="mensajeValidacionCalle"></small>
                             </div>
 
 
@@ -144,6 +145,7 @@
                             </label>
                             <div class="col-sm-10 mb-3">
                                 <input type="number" id="numero" class="form-control" name="Numero">
+                                <small id="mensajeValidacionNumero"></small>
                             </div>
 
 
@@ -152,6 +154,7 @@
                             </label>
                             <div class="col-sm-10 mb-3">
                                 <input type="number" id="cp" class="form-control" name="Cp">
+                                <small id="mensajeValidacionCp"></small>
                             </div>
 
 
@@ -160,6 +163,7 @@
                             </label>
                             <div class="col-sm-10 mb-3">
                                 <input type="text" id="ciudad" class="form-control" name="Ciudad">
+                                <small id="mensajeValidacionCiudad"></small>
                             </div>
 
 
@@ -189,5 +193,7 @@
     </div>
     @if($tipo==="rider")
         <script src="{{asset('js/usuarioBladePhpRider.js')}}"></script>
+    @elseif($tipo==="proveedor")
+        <script src="{{asset('js/usuarioBladePhpProveedor.js')}}"></script>
     @endif
 @endsection
