@@ -11,6 +11,7 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css' rel='stylesheet' />
 
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-02.png') }}">
     <link rel="stylesheet" href="{{ asset('css/proveedor1.css') }}" />
 </head>
 
