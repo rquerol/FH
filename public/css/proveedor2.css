@@ -7,6 +7,13 @@ body {
     background-color: #FF4D4D;
 }
 
+#map {
+    width: 100%;
+    height: 100% !important;
+    position: relative;
+}
+
+
 .fila1,
 .fila2,
 .fila3 {
