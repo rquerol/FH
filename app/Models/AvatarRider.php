@@ -11,7 +11,7 @@ class AvatarRider extends Model
 
     protected $table="avatares_rider";
     protected $primaryKey="avatar"; //solo se pone cuando la clave primaria no se llama id.
-    public $incrementing=false; //solo se pone cuando la clave primaria es autoincremental.
+    public $incrementing=false; //solo se pone cuando la clave primaria no es autoincremental.
     protected $keyType="string"; //solo se pone cuando la clave primaria no es entero.
     public $timestamps=false;
 }
