@@ -8,9 +8,8 @@
     <title>Proveedor2</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css' rel='stylesheet' />
 
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-02.png') }}">
     <link rel="stylesheet" href="{{ asset('css/proveedor2.css') }}">
 </head>
 
@@ -18,7 +17,9 @@
     <div class="contenedor col-lg-12">
         <div class="fila1 col-lg-12">
             <div class="infoProveedor col-lg-7 col-sm-12">
-                <h2>Proveedor</h2>
+                <div class="titulo">
+                    <h2>Proveedor</h2>
+                </div>
                 <h5>Calle: </h5>
                 <p>C/ Mallorca 283</p>
                 <h5>Ciudad: </h5>
@@ -27,13 +28,15 @@
                 <p>08037</p>
             </div>
             <div class="estadisticas col-lg-4 col-sm-12">
-                <h2>Estadisticas</h2>
+                <div class="titulo">
+                    <h2>Estadisticas</h2>
+                </div>
             </div>
         </div>
 
         <div class="fila2 col-lg-12">
             <div class="crearMenu col-lg-4 col-sm-12">
-                <div class="tituloMenu">
+                <div class="titulo">
                     <h2>Crear Menu</h2>
                 </div>
                 <div class="cantidadMenu">
@@ -46,29 +49,42 @@
                     </div>
                 </div>
                 <div class="btnCrear">
-                    addcslashes
-                        <!-- <button class="crear">
-                            Crear Menu(s)
-                        </button> -->
+                    <button class="crear">
+                        Crear Menu(s)
+                    </button>
                 </div>
             </div>
             <div class="entregarMenu col-lg-7 col-sm-12">
-                <h2>Entregar Menu</h2>
+                <div class="titulo">
+                    <h2>Entregar Menu</h2>
+                </div>
+                <div class="selectRider">
+                    <label for="opciones">Select Rider:</label>
+                    <select id="opciones" name="opciones">
+                        <option value="opcion4">-- Select --</option>
+                        <option value="opcion1">Opción 1</option>
+                        <option value="opcion2">Opción 2</option>
+                        <option value="opcion3">Opción 3</option>
+                    </select>
+                </div>
+                <div class="btnConfirm">
+                    <button class="confirm">
+                        confirmar
+                    </button>
+                </div>
             </div>
         </div>
 
         <div class="fila3 col-lg-12">
             <div class="stok col-lg-5 col-sm-12">
-                <h2>Stok</h2>
+                <div class="titulo">
+                    <h2>Stok</h2>
+                </div>
             </div>
             <div class="mapa col-lg-5">
-                @yield('contenido')
-                <div id="map">
-                    <a href="{{ route('proveedor2') }}">
-                        <button class="mover" id="mover">Gestionar Proveedor</button>
-                    </a>
+                <div class="titulo">
+                    <h2>Mapa</h2>
                 </div>
-                <script src="{{ asset('js/rider.js') }}"></script>
             </div>
         </div>
     </div>
