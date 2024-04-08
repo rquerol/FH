@@ -28,12 +28,12 @@
                 <div class="card-header text-center">
                     <p class="h5 font-wight-bold">
                         <strong>
-                            @if($tipo==="administrador") {{"Inscribir administrador"}} @elseif ($tipo==="proveedor") {{"Inscribir proveedor"}} @else {{"Inscribir rider"}} @endif
+                            @if($tipo==="proveedor") {{"Inscribir proveedor"}} @else {{"Inscribir rider"}} @endif
                         </strong>
                     </p>
-                    @if($tipo==="administrador") <small id="mensajeValidacionFormularioCrearAdministrador"></small> @elseif($tipo==="proveedor") <small id="mensajeValidacionFormularioCrearProveedor"></small> @else <small id="mensajeValidacionFormularioCrearRider"></small> @endif
+                    @if($tipo==="proveedor") <small id="mensajeValidacionFormularioCrearProveedor"></small> @else <small id="mensajeValidacionFormularioCrearRider"></small> @endif
                 </div>
-                <div class="card-body" @if($tipo==="proveedor"||$tipo==="rider") style="height: 455px; overflow-y: auto;" @endif>
+                <div class="card-body" style="height: 455px; overflow-y: auto;">
                     <form action="{{action([App\Http\Controllers\UsuarioController::class,'store'])}}" class="row" method="POST" id="formularioinscripcion" enctype="multipart/form-data">  
                         @csrf
 
@@ -72,7 +72,7 @@
                         </div>
 
 
-                        @if ($tipo==="administrador"||$tipo==="rider")
+                        @if ($tipo==="rider")
                             <label for="apellidos" class="col-sm-2 col-form-label">
                                 Apellidos
                             </label>
