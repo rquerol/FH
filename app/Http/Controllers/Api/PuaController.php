@@ -11,7 +11,7 @@ class PuaController extends Controller
     public function index()
     {
         $puas = Pua::all();
-        return response()->json($puas);
+        return response()->json($puas); // Devuelve todas las PUAs como respuesta JSON
     }
 
     public function store(Request $request)
@@ -82,5 +82,3 @@ class PuaController extends Controller
         return response()->json(null, 204);
     }
 }
-
-?>
