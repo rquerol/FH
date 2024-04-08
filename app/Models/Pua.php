@@ -13,4 +13,14 @@ class Pua extends Model
     //public $incrementing=false; //solo se pone cuando la clave primaria no es autoincremental.
     //protected $keyType="string"; //solo se pone cuando la clave primaria no es entero.
     public $timestamps=false;
+
+    public function riders()
+    {
+        return $this->belongsTo(Rider::class,"rider_creador");
+    }
+
+    public function estadosPua()
+    {
+        return $this->belongsTo(EstadoPua::class,"estado");
+    }
 }
