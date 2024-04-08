@@ -8,9 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Pua extends Model
 {
     use HasFactory;
-    protected $table="puas";
-    //protected $primaryKey="nombreDeLaClavePrimaria"; //solo se pone cuando la clave primaria no se llama id.
-    //public $incrementing=false; //solo se pone cuando la clave primaria no es autoincremental.
-    //protected $keyType="string"; //solo se pone cuando la clave primaria no es entero.
-    public $timestamps=false;
+    
+    protected $table = "puas";
+    protected $primaryKey = "id"; // Se establece la clave primaria
+    public $timestamps = false; // Se desactiva la gestión de los timestamps
+    
+    protected $fillable = [ // Se especifican los campos que se pueden llenar
+        'localizacion',
+        'cantidad_de_personas',
+        'ultima_entrega',
+        'rider_creador',
+        'estado',
+    ];
 }
