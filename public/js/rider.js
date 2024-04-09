@@ -161,4 +161,24 @@ document.addEventListener('DOMContentLoaded', function () {
     map.on('mouseleave', function () {
         map.getCanvas().style.cursor = '';
     });
+
+    // Al cargar la página, obtener las PUAs almacenadas en la base de datos
+    fetch('/api/puas')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(pua => {
+                // Crear marcador en el mapa para cada PUA
+                var description = `<h3>${pua.localizacion}</h3>` +
+                    `<p>Número de personas: ${pua.cantidad_de_personas}</p>`;
+                
+                new mapboxgl.Marker({
+                    color: "#fcba03",
+                    draggable: false
+                })
+                .setLngLat([pua.lng, pua.lat])
+                .setPopup(new mapboxgl.Popup().setHTML(description))
+                .addTo(map);
+            });
+        })
+        .catch(error => console.error('Error fetching PUAs:', error));
 });
